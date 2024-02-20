@@ -1,4 +1,5 @@
-﻿using Kreta.Shared.Models.SchoolCitizens;
+﻿using Kreta.Shared.Models;
+using Kreta.Shared.Models.SchoolCitizens;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Net;

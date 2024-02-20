@@ -1,5 +1,4 @@
-﻿
-namespace Kreta.Shared.Models.SchoolCitizens
+﻿namespace Kreta.Shared.Models
 {
     public class Subject : IDbEntity<Subject>
     {
