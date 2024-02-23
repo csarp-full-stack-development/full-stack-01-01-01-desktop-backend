@@ -2,7 +2,7 @@
 using Kreta.Shared.Extensions;
 using Kreta.Shared.Models.SchoolCitizens;
 
-namespace Kreta.Backend.Controllers.Assamblers
+namespace Kreta.Shared.Assamblers
 {
     public class ParentAssambler : Assambler<Parent, ParentDto>
     {

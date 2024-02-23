@@ -39,7 +39,7 @@ namespace Kreta.Backend.Repos
         }
         public async Task<ControllerResponse> UpdateAsync(TEntity entity)
         {
-            ControllerResponse response = new ControllerResponse();
+            ControllerResponse response = new ();
             try
             {
                 _dbContext.ChangeTracker.Clear();
@@ -57,7 +57,7 @@ namespace Kreta.Backend.Repos
         }
         public async Task<ControllerResponse> DeleteAsync(Guid id)
         {
-            ControllerResponse response = new ControllerResponse();
+            ControllerResponse response = new ();
             
             TEntity? entityToDelete = FindByCondition(e => e.Id==id).FirstOrDefault();
             
@@ -91,7 +91,7 @@ namespace Kreta.Backend.Repos
         }
         public async Task<ControllerResponse> CreateAsync(TEntity entity)
         {
-            ControllerResponse response = new ControllerResponse();
+            ControllerResponse response = new ();
             if (_dbSet is null)
             {
                 response.AppendNewError($"{entity} osztály hozzáadása az adatbázishoz nem sikerült!");

@@ -1,5 +1,5 @@
-﻿using Kreta.Backend.Controllers.Assamblers;
-using Kreta.Backend.Repos;
+﻿using Kreta.Backend.Repos;
+using Kreta.Shared.Assamblers;
 using Kreta.Shared.Dtos;
 using Kreta.Shared.Models.SchoolCitizens;
 using Microsoft.AspNetCore.Mvc;

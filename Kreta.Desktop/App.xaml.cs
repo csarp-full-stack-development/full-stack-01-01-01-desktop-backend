@@ -15,7 +15,7 @@ namespace Kreta.Desktop
     public partial class App : Application
     {
         private bool _loginPage = false;
-        private IHost host;
+        private readonly IHost host;
 
         public App()
         {
@@ -23,6 +23,7 @@ namespace Kreta.Desktop
                 .ConfigureServices(services =>
                 {
                     services.ConfigureHttpCliens();
+                    services.ConfigureAssamblers();
                     services.ConfigureApiServices();
                     services.ConfigureViewViewModels();
                 })

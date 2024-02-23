@@ -1,4 +1,4 @@
-﻿namespace Kreta.Backend.Controllers.Assamblers
+﻿namespace Kreta.Shared.Assamblers
 {
     public abstract class Assambler<Tmodel, TDto>
     {

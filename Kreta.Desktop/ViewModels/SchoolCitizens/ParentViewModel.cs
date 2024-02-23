@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Kreta.HttpService.Service;
+using Kreta.HttpService.Services;
 using Kreta.Shared.Responses;
 using Kreta.Desktop.ViewModels.Base;
 using System.Collections.Generic;
@@ -71,7 +71,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
         {
             if (_parentService is not null)
             {
-                List<Parent> parents = await _parentService.SelectAllParent();
+                List<Parent> parents = await _parentService.SelectAllAsync();
                 Parents = new ObservableCollection<Parent>(parents);
             }
         }

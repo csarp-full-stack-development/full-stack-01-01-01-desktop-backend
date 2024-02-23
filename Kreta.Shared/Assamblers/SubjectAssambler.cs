@@ -2,7 +2,7 @@
 using Kreta.Shared.Extensions;
 using Kreta.Shared.Models;
 
-namespace Kreta.Backend.Controllers.Assamblers
+namespace Kreta.Shared.Assamblers
 {
     public class SubjectAssambler : Assambler<Subject, SubjectDto>
     {

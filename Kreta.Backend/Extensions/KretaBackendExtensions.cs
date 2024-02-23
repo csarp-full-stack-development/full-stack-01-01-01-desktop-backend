@@ -1,6 +1,6 @@
 ﻿using Kreta.Backend.Context;
-using Kreta.Backend.Controllers.Assamblers;
 using Kreta.Backend.Repos;
+using Kreta.Shared.Assamblers;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kreta.Backend.Extensions

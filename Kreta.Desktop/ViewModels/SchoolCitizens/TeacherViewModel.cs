@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Kreta.Desktop.ViewModels.Base;
-using Kreta.HttpService.Service;
+using Kreta.HttpService.Services;
 using Kreta.Shared.Models.SchoolCitizens;
 using Kreta.Shared.Responses;
 using System.Collections.Generic;
@@ -77,7 +77,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
         {
             if (_teacherService is not null)
             {
-                List<Teacher> students = await _teacherService.SelectAllTeacher();
+                List<Teacher> students = await _teacherService.SelectAllAsync();
                 Teachers = new ObservableCollection<Teacher>(students);
             }
         }

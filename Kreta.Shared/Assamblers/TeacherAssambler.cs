@@ -2,16 +2,16 @@
 using Kreta.Shared.Extensions;
 using Kreta.Shared.Models.SchoolCitizens;
 
-namespace Kreta.Backend.Controllers.Assamblers
+namespace Kreta.Shared.Assamblers
 {
-    public class StudentAssambler : Assambler<Student, StudentDto>
+    public class TeacherAssambler : Assambler<Teacher, TeacherDto>
     {
-        public override StudentDto ToDto(Student model)
+        public override TeacherDto ToDto(Teacher model)
         {
             return model.ToDto();
         }
 
-        public override Student ToModel(StudentDto dto)
+        public override Teacher ToModel(TeacherDto dto)
         {
             return dto.ToModel();
         }

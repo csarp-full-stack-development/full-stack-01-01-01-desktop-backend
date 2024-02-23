@@ -1,66 +1,66 @@
-﻿using Kreta.Shared.Dtos;
-using Kreta.Shared.Extensions;
-using Kreta.Shared.Models.SchoolCitizens;
+﻿using Kreta.Shared.Assamblers;
+using Kreta.Shared.Models;
 using Kreta.Shared.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Kreta.HttpService.Service
+namespace Kreta.HttpService.Services
 {
-    public class StudentService : IStudentService
+    public class BaseService<TEntity, TEntityDto> : IBaseService<TEntity>
+        where TEntity : class, IDbEntity<TEntity>, new()
+        where TEntityDto : class, new()
     {
         private readonly HttpClient? _httpClient;
+        private Assambler<TEntity, TEntityDto> _assambler;
 
-        public StudentService()
-        {
-            _httpClient = new HttpClient();
-        }
-
-        public StudentService(IHttpClientFactory? httpClientFactory)
+        public BaseService(IHttpClientFactory? httpClientFactory, Assambler<TEntity, TEntityDto> assambler)
         {
             if (httpClientFactory is not null)
             {
                 _httpClient = httpClientFactory.CreateClient("KretaApi");
             }
+            _assambler = assambler;
         }
 
-        public async Task<List<Student>> SelectAllStudentAsync()
+        public async Task<List<TEntity>> SelectAllAsync()
         {
             if (_httpClient is not null)
             {
                 try
                 {
-                    List<StudentDto>? resultDto = await _httpClient.GetFromJsonAsync<List<StudentDto>>("api/Student");
+                    
+                    List<TEntityDto>? resultDto = await _httpClient.GetFromJsonAsync<List<TEntityDto>>($"api/{GetApiName()}");
                     if (resultDto is not null)
                     {
-                        List<Student> result = resultDto.Select(studentDto => studentDto.ToModel()).ToList();
+                        List<TEntity> result = resultDto.Select(entity => _assambler.ToModel(entity) ).ToList();
                         return result;
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
             }
-            return new List<Student>();
+            return new List<TEntity>();
         }
 
-        public async Task<ControllerResponse> UpdateAsync(Student student)
+        public async Task<ControllerResponse> UpdateAsync(TEntity entity)
         {
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync("api/Student", student.ToDto());
+                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync($"api/{GetApiName()}", _assambler.ToDto(entity));
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
                         ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
                         if (response is null)
                         {
-                            defaultResponse.ClearAndAddError("A törlés http kérés hibát okozott!");
+                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
                         }
                         else return response;
                     }
@@ -83,6 +83,7 @@ namespace Kreta.HttpService.Service
             return defaultResponse;
         }
 
+
         public async Task<ControllerResponse> DeleteAsync(Guid id)
         {
             ControllerResponse defaultResponse = new();
@@ -90,7 +91,7 @@ namespace Kreta.HttpService.Service
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/Student/{id}");
+                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/{GetApiName()}/{id}");
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -119,15 +120,14 @@ namespace Kreta.HttpService.Service
             return defaultResponse;
         }
 
-
-        public async Task<ControllerResponse> InsertAsync(Student student)
+        public async Task<ControllerResponse> InsertAsync(TEntity entity)
         {
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync("api/Student", student.ToDto());
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync( $"api/{GetApiName()}", _assambler.ToDto(entity));
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -154,6 +154,13 @@ namespace Kreta.HttpService.Service
             }
             defaultResponse.ClearAndAddError("Az adatok mentése nem lehetséges!");
             return defaultResponse;
-        }       
+        }
+
+        private static string GetApiName()
+        {
+            return new TEntity().GetType().Name;
+        }
+
+
     }
 }
