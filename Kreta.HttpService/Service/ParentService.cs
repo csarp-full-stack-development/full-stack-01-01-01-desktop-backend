@@ -1,24 +1,20 @@
 ﻿using Kreta.Shared.Dtos;
-using Kreta.Shared.Extensions;
-using Kreta.Shared.Models.SchoolCitizens;
 using Kreta.Shared.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
-using System.Net;
 using System.Net.Http.Json;
+using System.Net;
+using Kreta.Shared.Models.SchoolCitizens;
+using Kreta.Shared.Extensions;
+
 
 namespace Kreta.HttpService.Service
 {
-    public class StudentService : IStudentService
+    public class ParentService : IParentService
     {
         private readonly HttpClient? _httpClient;
 
-        public StudentService()
-        {
-            _httpClient = new HttpClient();
-        }
-
-        public StudentService(IHttpClientFactory? httpClientFactory)
+        public ParentService(IHttpClientFactory? httpClientFactory)
         {
             if (httpClientFactory is not null)
             {
@@ -26,34 +22,35 @@ namespace Kreta.HttpService.Service
             }
         }
 
-        public async Task<List<Student>> SelectAllStudentAsync()
+        public async Task<List<Parent>> SelectAllParent()
         {
             if (_httpClient is not null)
             {
                 try
                 {
-                    List<StudentDto>? resultDto = await _httpClient.GetFromJsonAsync<List<StudentDto>>("api/Student");
+                    List<ParentDto>? resultDto = await _httpClient.GetFromJsonAsync<List<ParentDto>>("api/Parent");
                     if (resultDto is not null)
                     {
-                        List<Student> result = resultDto.Select(studentDto => studentDto.ToModel()).ToList();
+                        List<Parent> result = resultDto.Select(studentDto => studentDto.ToModel()).ToList();
                         return result;
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
             }
-            return new List<Student>();
+            return new List<Parent>();
         }
 
-        public async Task<ControllerResponse> UpdateAsync(Student student)
+        public async Task<ControllerResponse> UpdateAsync(Parent parent)
         {
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync("api/Student", student.ToDto());
+                    HttpResponseMessage httpResponse = await _httpClient.PutAsJsonAsync("api/Parent", parent.ToDto());
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -90,7 +87,7 @@ namespace Kreta.HttpService.Service
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/Student/{id}");
+                    HttpResponseMessage httpResponse = await _httpClient.DeleteAsync($"api/Parent/{id}");
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -120,14 +117,14 @@ namespace Kreta.HttpService.Service
         }
 
 
-        public async Task<ControllerResponse> InsertAsync(Student student)
+        public async Task<ControllerResponse> InsertAsync(Parent parent)
         {
             ControllerResponse defaultResponse = new();
             if (_httpClient is not null)
             {
                 try
                 {
-                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync("api/Student", student.ToDto());
+                    HttpResponseMessage httpResponse = await _httpClient.PostAsJsonAsync("api/Parent", parent.ToDto());
                     if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
                     {
                         string content = await httpResponse.Content.ReadAsStringAsync();
@@ -154,6 +151,7 @@ namespace Kreta.HttpService.Service
             }
             defaultResponse.ClearAndAddError("Az adatok mentése nem lehetséges!");
             return defaultResponse;
-        }       
+        }
+
     }
 }

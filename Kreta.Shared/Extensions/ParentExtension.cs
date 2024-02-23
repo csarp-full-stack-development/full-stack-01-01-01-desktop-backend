@@ -1,5 +1,4 @@
-﻿
-using Kreta.Shared.Dtos;
+﻿using Kreta.Shared.Dtos;
 using Kreta.Shared.Models.SchoolCitizens;
 
 namespace Kreta.Shared.Extensions
@@ -14,19 +13,23 @@ namespace Kreta.Shared.Extensions
                 FirstName = parent.FirstName,
                 LastName = parent.LastName,
                 IsWoman = parent.IsWoman,
-                Address = parent.Address,
+                BirthDay = parent.BirthDay,
+                PlaceOfBirth = parent.PlaceOfBirth,
+                MathersName = parent.MathersName,
             };
         }
 
-        public static Parent ToModel(this ParentDto parentDto)
+        public static Parent ToModel(this ParentDto parentdto)
         {
             return new Parent
             {
-                Id = parentDto.Id,
-                FirstName = parentDto.FirstName,
-                LastName = parentDto.LastName,
-                IsWoman= parentDto.IsWoman,
-                Address = parentDto.Address,
+                Id = parentdto.Id,
+                FirstName = parentdto.FirstName,
+                LastName = parentdto.LastName,
+                IsWoman = parentdto.IsWoman,
+                BirthDay= parentdto.BirthDay,
+                PlaceOfBirth= parentdto.PlaceOfBirth,
+                MathersName= parentdto.MathersName,
             };
         }
     }

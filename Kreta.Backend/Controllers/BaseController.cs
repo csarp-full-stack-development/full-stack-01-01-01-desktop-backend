@@ -12,8 +12,8 @@ namespace Kreta.Backend.Controllers
         where Tmodel : class, IDbEntity<Tmodel>, new()
         where TDto : class,new()
     {
-        private Assambler<Tmodel,TDto> _assambler;
-        private IRepositoryBase<Tmodel> _repo;
+        private readonly Assambler<Tmodel,TDto> _assambler;
+        private readonly IRepositoryBase<Tmodel> _repo;
 
         public BaseController(Assambler<Tmodel, TDto> assembler, IRepositoryBase<Tmodel> repo)
         {

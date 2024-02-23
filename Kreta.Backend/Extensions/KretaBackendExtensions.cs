@@ -40,6 +40,8 @@ namespace Kreta.Backend.Extensions
             services.AddScoped<IParentRepo, ParentInMemoryRepo>();
             services.AddScoped<ITeacherRepo, TeacherInMemoryRepo>();
             services.AddScoped<ISubjectRepo, SubjectInMemoryRepo>();
+            services.AddScoped<ISubjectRepo, SubjectInMemoryRepo>();
+            services.AddScoped<IEducationLevelRepo, EducationLevelMemoryRepo>();
         }
 
         public static void ConfigureAssamblers(this IServiceCollection services)
@@ -49,6 +51,7 @@ namespace Kreta.Backend.Extensions
             services.AddScoped<ParentAssambler>();
             services.AddScoped<StudentAssambler>();
             services.AddScoped<SubjectAssambler>();
+            services.AddScoped<EducationLevelAssambler>();
         }
     }
 }

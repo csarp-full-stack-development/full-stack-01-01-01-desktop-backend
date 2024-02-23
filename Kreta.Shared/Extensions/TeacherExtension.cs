@@ -12,21 +12,28 @@ namespace Kreta.Shared.Extensions
                 Id = teacher.Id,
                 FirstName = teacher.FirstName,
                 LastName = teacher.LastName,
-                IsWoman = teacher.IsWoman,
+                BirthDay = teacher.BirthDay,
                 IsHeadTeacher = teacher.IsHeadTeacher,
+                PlaceOfBirth = teacher.PlaceOfBirth,
+                IsWoman = teacher.IsWoman,
+                MathersName = teacher.MathersName,
             };
         }
 
-        public static Teacher ToModel(this TeacherDto teacherDto)
+        public static Teacher ToModel(this TeacherDto teacherdto)
         {
             return new Teacher
             {
-                Id = teacherDto.Id,
-                FirstName = teacherDto.FirstName,
-                LastName = teacherDto.LastName,
-                IsWoman = teacherDto.IsWoman,
-                IsHeadTeacher= teacherDto.IsHeadTeacher
+                Id = teacherdto.Id,
+                FirstName = teacherdto.FirstName,
+                LastName = teacherdto.LastName,
+                BirthDay = teacherdto.BirthDay,
+                IsHeadTeacher = teacherdto.IsHeadTeacher,
+                PlaceOfBirth= teacherdto.PlaceOfBirth,
+                IsWoman= teacherdto.IsWoman,
+                MathersName= teacherdto.MathersName,                
             };
         }
     }
+
 }

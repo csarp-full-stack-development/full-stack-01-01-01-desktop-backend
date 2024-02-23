@@ -1,57 +1,89 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Kreta.HttpService.Service;
+using Kreta.Shared.Responses;
 using Kreta.Desktop.ViewModels.Base;
-using Kreta.Shared.Models.SchoolCitizens;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Kreta.Shared.Models.SchoolCitizens;
 
 namespace Kreta.Desktop.ViewModels.SchoolCitizens
 {
     public partial class StudentViewModel : BaseViewModel
-    {
-        [ObservableProperty]
-        private ObservableCollection<string> _educationLevels = new();
+    {        
+        private readonly IStudentService? _studentService;
 
         [ObservableProperty]
         private ObservableCollection<Student> _students = new();
 
         [ObservableProperty]
-        private Student _selectedStudent;
+        private ObservableCollection<string> _educationLevels = new();
 
-        private string _selectedEducationLevel = string.Empty;
-        public string SelectedEducationLevel
+        [ObservableProperty]
+        private Student _selectedStudent;
+      
+        public StudentViewModel()
         {
-            get => _selectedEducationLevel;
-            set
+            _selectedStudent = new Student();
+        }
+
+        public StudentViewModel(IStudentService? studentService)
+        {
+            _selectedStudent = new Student();
+            _studentService = studentService;
+        }
+
+        public async override Task InitializeAsync()
+        {
+            await UpdateView();
+        }
+
+        [RelayCommand]
+        private async Task DoSave(Student newStudent)
+        {
+            if (_studentService is not null)
             {
-                SetProperty(ref _selectedEducationLevel, value);
-                SelectedStudent.EducationLevel = _selectedEducationLevel;
+                ControllerResponse result;
+                if (newStudent.HasId)
+                    result = await _studentService.UpdateAsync(newStudent);
+                else
+                    result = await _studentService.InsertAsync(newStudent);
+
+                if (!result.HasError)
+                {
+                    await UpdateView();
+                }
             }
         }
 
-        public StudentViewModel()
+        [RelayCommand]
+        private async Task DoRemove(Student studentToDelete)
+        {
+            if (_studentService is not null)
+            {
+                ControllerResponse result = await _studentService.DeleteAsync(studentToDelete.Id);
+                if (result.IsSuccess)
+                {
+                    await UpdateView();
+                }
+            }
+        }
+
+        [RelayCommand]
+        private void DoNewStudent()
         {
             SelectedStudent = new Student();
-            SelectedEducationLevel = string.Empty;
         }
 
-        [RelayCommand]
-        public void DoSave(Student newStudent)
+        private async Task UpdateView()
         {
-            Students.Add(newStudent);
-            OnPropertyChanged(nameof(Students));
+            if (_studentService is not null)
+            {
+                List<Student> students = await _studentService.SelectAllStudentAsync();
+                Students = new ObservableCollection<Student>(students);
+            }
         }
 
-        [RelayCommand]
-        void DoNewStudent()
-        {
-            SelectedStudent = new Student();
-        }
-
-        [RelayCommand]
-        public void DoRemove(Student studentToDelete)
-        {
-            Students.Remove(studentToDelete);
-            OnPropertyChanged(nameof(Students));
-        }
     }
 }

@@ -13,26 +13,29 @@ namespace Kreta.Shared.Extensions
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 BirthDay = student.BirthDay,
-                IsWoomen = student.IsWoomen,
+                PlaceOfBirth = student.PlaceOfBirth,
+                IsWoman = student.IsWoman,
+                EducationLevel = student.EducationLevel,
                 SchoolYear = student.SchoolYear,
                 SchoolClass = student.SchoolClass,
-                EducationLevel = student.EducationLevel,
             };
         }
 
-        public static Student ToModel(this StudentDto studentDto)
+        public static Student ToModel(this StudentDto studentdto)
         {
             return new Student
             {
-                Id = studentDto.Id,
-                FirstName = studentDto.FirstName,
-                LastName = studentDto.LastName,
-                BirthDay= studentDto.BirthDay,
-                IsWoomen = studentDto.IsWoomen,
-                SchoolYear = studentDto.SchoolYear,
-                SchoolClass = studentDto.SchoolClass,
-                EducationLevel = studentDto.EducationLevel,
+                Id = studentdto.Id,
+                FirstName = studentdto.FirstName,
+                LastName = studentdto.LastName,
+                BirthDay = studentdto.BirthDay,
+                PlaceOfBirth = studentdto.PlaceOfBirth,
+                IsWoman = studentdto.IsWoman,
+                EducationLevel = studentdto.EducationLevel,
+                SchoolClass = studentdto.SchoolClass,  
+                SchoolYear = studentdto.SchoolYear,
             };
         }
     }
+
 }
