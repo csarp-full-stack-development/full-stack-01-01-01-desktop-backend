@@ -12,7 +12,7 @@ namespace Kreta.Shared.Dtos
         public bool IsWoman { get; set; }
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClass { get; set; }
-        public string EducationLevel { get; set; } = string.Empty;
+        public Guid EducationLevel { get; set; } = Guid.Empty;
 
     }
 }

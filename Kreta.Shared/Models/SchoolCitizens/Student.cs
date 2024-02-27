@@ -2,7 +2,7 @@
 {
     public class Student : IDbEntity<Student>
     {
-        public Student(string firstName, string lastName, DateTime birthsDay, bool isWooman,string placeOfBirth, int schoolYear, SchoolClassType schoolClass, string educationLevel)
+        public Student(string firstName, string lastName, DateTime birthsDay, bool isWooman,string placeOfBirth, int schoolYear, SchoolClassType schoolClass, Guid educationLevelId)
         {
             Id = Guid.NewGuid();
             FirstName = firstName;
@@ -12,7 +12,7 @@
             IsWoman = isWooman;
             SchoolYear = schoolYear;
             SchoolClass = schoolClass;
-            EducationLevel = educationLevel;
+            EducationLevelId = educationLevelId;
         }
 
         public Student()
@@ -25,11 +25,12 @@
             IsWoman = false;
             SchoolYear = 9;
             SchoolClass = SchoolClassType.ClassA;
-            EducationLevel = string.Empty;
+            EducationLevelId = Guid.Empty;
             PlaceOfBirth= string.Empty;
         }
 
         public Guid Id { get; set; }
+        public Guid EducationLevelId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDay { get; set; }
@@ -37,7 +38,6 @@
         public bool IsWoman { get; set; }
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClass { get; set; }
-        public string EducationLevel { get; set; }
         public bool HasId => Id != Guid.Empty;
         public bool IsMan => !IsWoman;
         public string HungarianName => $"{LastName} {FirstName}";
@@ -45,7 +45,7 @@
         public override string ToString()
         {
             string woman = IsWoman ? "nő" : "férfi";
-            return $"{HungarianName} {woman} ({SchoolYear}.{SchoolClass}) - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)}) ({EducationLevel})";
+            return $"{HungarianName} {woman} ({SchoolYear}.{SchoolClass}) - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)})";
         }
     }
 }

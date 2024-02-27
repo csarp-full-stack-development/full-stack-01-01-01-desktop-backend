@@ -8,6 +8,24 @@ namespace Kreta.Backend.Context
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            Guid EdicatuionLevelId1 = Guid.NewGuid();
+            Guid EdicatuionLevelId2 = Guid.NewGuid();
+            List<EducationLevel> educationLevels = new()
+            {
+                new EducationLevel
+                {
+                    Id=EdicatuionLevelId1,
+                    StudentEducationLevel="érettségi",
+                    DurationOfEducation=4,
+                },
+                new EducationLevel
+                {
+                    Id=EdicatuionLevelId2,
+                    StudentEducationLevel="szakképzés",
+                    DurationOfEducation=2,
+                }
+            };
+
             List<Student> students = new()
             {
                 new Student
@@ -20,7 +38,7 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Szeged",
                     SchoolYear=9,
                     SchoolClass = SchoolClassType.ClassA,
-                    EducationLevel="érettségi"
+                    EducationLevelId=EdicatuionLevelId1,
                 },
                 new Student
                 {
@@ -32,7 +50,7 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Kiskunhalas",
                     SchoolYear=10,
                     SchoolClass = SchoolClassType.ClassB,
-                    EducationLevel="érettségi"
+                    EducationLevelId=EdicatuionLevelId2,
                 },
                 new Student
                 {
@@ -44,7 +62,7 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Makó",
                     SchoolYear=10,
                     SchoolClass = SchoolClassType.ClassA,
-                    EducationLevel="érettségi"
+                    EducationLevelId=EdicatuionLevelId1,
                 },
                 new Student
                 {
@@ -56,7 +74,7 @@ namespace Kreta.Backend.Context
                     BirthDay=new DateTime(2019,9,9),
                     SchoolYear=12,
                     SchoolClass = SchoolClassType.ClassC,
-                    EducationLevel="érettségi"
+                    EducationLevelId=EdicatuionLevelId1,
                 },
                 new Student
                 {
@@ -68,7 +86,7 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Apátfalva",
                     SchoolYear=13,
                     SchoolClass = SchoolClassType.ClassB,
-                    EducationLevel="szakképzés"
+                    EducationLevelId=EdicatuionLevelId2,
                 }
             };
             List<Teacher> teachers = new()
@@ -199,21 +217,6 @@ namespace Kreta.Backend.Context
 
                 }
             };
-
-            List<EducationLevel> educationLevels = new()
-            {
-                new EducationLevel
-                {
-                    Id=Guid.NewGuid(),
-                    StudentEducationLevel="érettségi",
-                },
-                new EducationLevel
-                {
-                    Id=Guid.NewGuid(),
-                    StudentEducationLevel="szakképzés"
-                }
-            };
-
 
             modelBuilder.Entity<Student>().HasData(students);
             modelBuilder.Entity<Teacher>().HasData(teachers);

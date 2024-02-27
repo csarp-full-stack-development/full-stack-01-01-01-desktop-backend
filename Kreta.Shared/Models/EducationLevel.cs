@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public string StudentEducationLevel { get; set; } = string.Empty;
+        public int DurationOfEducation {  get; set; }
 
     }
 }
