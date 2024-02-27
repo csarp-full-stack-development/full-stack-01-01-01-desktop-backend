@@ -77,7 +77,7 @@
                              Command="{Binding ShowOsztalyzatokCommand}"
              >
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="GraduationCap" Style="{StaticResource menuButtonIcon}"/>
+                            <fa:IconImage Icon="Pencil" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Osztályzatok" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>

@@ -93,7 +93,7 @@ namespace Kreta.Desktop.ViewModels
         public void ShowOsztalyzatok()
         {
             Caption = "Osztályzatok";
-            Icon = IconChar.GraduationCap;
+            Icon = IconChar.Pencil;
             CurrentChildView = _schoolOsztalyzatokViewModel;
         }
     }
