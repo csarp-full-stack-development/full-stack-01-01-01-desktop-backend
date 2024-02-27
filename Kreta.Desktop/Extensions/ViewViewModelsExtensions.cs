@@ -1,4 +1,5 @@
 ﻿using Kreta.Desktop.ViewModels;
+using Kreta.Desktop.ViewModels.Administration;
 using Kreta.Desktop.ViewModels.ControlPanel;
 using Kreta.Desktop.ViewModels.Login;
 using Kreta.Desktop.ViewModels.SchoolCitizens;
@@ -6,6 +7,7 @@ using Kreta.Desktop.ViewModels.SchoolClasses;
 using Kreta.Desktop.ViewModels.SchoolGrades;
 using Kreta.Desktop.ViewModels.SchoolSubjects;
 using Kreta.Desktop.Views;
+using Kreta.Desktop.Views.Administration;
 using Kreta.Desktop.Views.ControlPanel;
 using Kreta.Desktop.Views.Login;
 using Kreta.Desktop.Views.SchoolCitizens;
@@ -149,6 +151,17 @@ namespace KretaDesktop.Extensions
             services.AddSingleton<SubjectsOfTeachersView>(s => new SubjectsOfTeachersView()
             {
                 DataContext = s.GetRequiredService<SubjectsOfTeachersViewModel>()
+            });
+            // Administration
+            services.AddSingleton<AdministrationViewModel>();
+            services.AddSingleton<AdministrationView>(s => new AdministrationView()
+            {
+                DataContext = s.GetRequiredService<AdministrationViewModel>()
+            });
+            services.AddSingleton<EducationLevelViewModel>();
+            services.AddSingleton<EducationLevelView>(s => new EducationLevelView()
+            {
+                DataContext = s.GetRequiredService<EducationLevelViewModel>()
             });
         }
     }

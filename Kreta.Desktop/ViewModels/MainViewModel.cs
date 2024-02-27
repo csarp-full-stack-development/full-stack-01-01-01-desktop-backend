@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FontAwesome.Sharp;
+using Kreta.Desktop.ViewModels.Administration;
 using Kreta.Desktop.ViewModels.Base;
 using Kreta.Desktop.ViewModels.ControlPanel;
 using Kreta.Desktop.ViewModels.SchoolCitizens;
@@ -17,6 +18,7 @@ namespace Kreta.Desktop.ViewModels
         private SchoolClassesViewModel _schoolClassesViewModel;
         private SchoolSubjectsViewModel _schoolSubjectsViewModel;
         private SchoolGradesViewModel _schoolOsztalyzatokViewModel;
+        private AdministrationViewModel _administrationViewModel;
 
 
         public MainViewModel()
@@ -26,6 +28,7 @@ namespace Kreta.Desktop.ViewModels
             _schoolClassesViewModel = new SchoolClassesViewModel();
             _schoolSubjectsViewModel = new SchoolSubjectsViewModel();
             _schoolOsztalyzatokViewModel = new SchoolGradesViewModel();
+            _administrationViewModel = new AdministrationViewModel();
 
             _currentChildView = new ControlPanelViewModel();
         }
@@ -35,7 +38,8 @@ namespace Kreta.Desktop.ViewModels
             SchoolCitizensViewModel schoolCitizensViewModel,
             SchoolClassesViewModel schoolClassesViewModel,
             SchoolSubjectsViewModel schoolSubjectsViewModel,
-            SchoolGradesViewModel schoolOsztalyzatokViewModel
+            SchoolGradesViewModel schoolOsztalyzatokViewModel,
+            AdministrationViewModel administrationViewModel
 
             )
         {
@@ -44,6 +48,7 @@ namespace Kreta.Desktop.ViewModels
             _schoolClassesViewModel = schoolClassesViewModel;
             _schoolSubjectsViewModel = schoolSubjectsViewModel;
             _schoolOsztalyzatokViewModel = schoolOsztalyzatokViewModel;
+            _administrationViewModel = administrationViewModel;
 
             CurrentChildView = _controlPanelViewModel;
             ShowDashbord();
@@ -90,11 +95,19 @@ namespace Kreta.Desktop.ViewModels
         }
 
         [RelayCommand]
-        public void ShowOsztalyzatok()
+        public void ShowSchoolGrades()
         {
             Caption = "Osztályzatok";
             Icon = IconChar.Pencil;
             CurrentChildView = _schoolOsztalyzatokViewModel;
+        }
+
+        [RelayCommand]
+        public void ShowAdministration()
+        {
+            Caption = "Adminisztrációs feladatok";
+            Icon = IconChar.Computer;
+            CurrentChildView = _administrationViewModel;
         }
     }
 }
