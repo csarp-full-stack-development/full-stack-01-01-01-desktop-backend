@@ -21,7 +21,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
         private ObservableCollection<Student> _students = new();
 
         [ObservableProperty]
-        private ObservableCollection<string> _educationLevels = new();
+        private ObservableCollection<EducationLevel> _educationLevels = new();
 
         [ObservableProperty]
         private Student _selectedStudent;
@@ -90,7 +90,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
             if (_educationLevelService is not null)
             { 
                 List<EducationLevel> educationLevels = await _educationLevelService.SelectAllAsync();
-                EducationLevels = new ObservableCollection<string>(educationLevels.Select(educationLevels => educationLevels.StudentEducationLevel));
+                EducationLevels = new ObservableCollection<EducationLevel>(educationLevels);
             }
         }
 
