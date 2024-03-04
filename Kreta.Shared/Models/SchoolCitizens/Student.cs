@@ -39,9 +39,10 @@
         public bool IsWoman { get; set; }
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClass { get; set; }
-        public bool HasId => Id != Guid.Empty;
         public bool IsMan => !IsWoman;
         public string HungarianName => $"{LastName} {FirstName}";
+
+        public bool HasId => Id != Guid.Empty;
 
         public override string ToString()
         {
