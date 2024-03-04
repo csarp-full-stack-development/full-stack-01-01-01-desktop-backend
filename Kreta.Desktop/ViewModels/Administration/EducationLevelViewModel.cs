@@ -3,7 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using Kreta.Desktop.ViewModels.Base;
 using Kreta.HttpService.Services;
 using Kreta.Shared.Models;
+using Kreta.Shared.Models.SchoolCitizens;
 using Kreta.Shared.Responses;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -20,7 +22,11 @@ namespace Kreta.Desktop.ViewModels.Administration
         private ObservableCollection<EducationLevel> _educationLevels = new();
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(GetStudentsByEducationLevelIdCommand))]
         private EducationLevel _selectedEducationLevel;
+
+        [ObservableProperty]
+        private ObservableCollection<Student> _EducationLevelsStudents = new();
 
         public EducationLevelViewModel()
         {
@@ -30,7 +36,7 @@ namespace Kreta.Desktop.ViewModels.Administration
         public EducationLevelViewModel(IEducationLevelService? educationLevelService)
         {
             _educationLevelService = educationLevelService;
-            _selectedEducationLevel = new EducationLevel();
+            SelectedEducationLevel = new EducationLevel();
         }
 
         public async override Task InitializeAsync()
@@ -75,6 +81,16 @@ namespace Kreta.Desktop.ViewModels.Administration
             SelectedEducationLevel = new EducationLevel();
         }
 
+        [RelayCommand]
+        public async Task GetStudentsByEducationLevelId()
+        {
+            if (_educationLevelService is not null && SelectedEducationLevel.HasId)
+            {
+                List<Student> studentByEducationLevelId = await _educationLevelService.GetStudentsBy(SelectedEducationLevel.Id);
+                EducationLevelsStudents = new ObservableCollection<Student>(studentByEducationLevelId);
+
+            }
+        }
         private async Task UpdateView()
         {
             if (_educationLevelService is not null)
