@@ -15,5 +15,17 @@ namespace Kreta.Backend.Repos
         {
             return FindAll().Include(educationLevel => educationLevel.Students);
         }
+
+        public ICollection<Student> SelectStudentsBy(Guid educationLevelId)
+        {
+            EducationLevel? resultEducationLevel=
+                FindByCondition(educationLevel => educationLevel.Id == educationLevelId)
+                .Include(educationLevel => educationLevel.Students)
+                .FirstOrDefault();
+            if (resultEducationLevel != null && resultEducationLevel.Students is not null)
+                return resultEducationLevel.Students;
+            else
+                return new List<Student>();
+        }
     }
 }

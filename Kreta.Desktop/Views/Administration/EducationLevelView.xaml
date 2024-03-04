@@ -62,7 +62,7 @@
             Grid.ColumnSpan="2" 
             Margin="10 2 10 10"
             ItemsSource="{Binding EducationLevels}"
-            SelectedItem="{Binding SelectedEducationLevel}"
+            SelectedItem="{Binding SelectedEducationLevel}"            
          />
     </Grid>
 </UserControl>

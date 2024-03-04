@@ -6,5 +6,6 @@ namespace Kreta.Backend.Repos
     public interface IEducationLevelRepo : IRepositoryBase<EducationLevel>
     {
         public IQueryable<EducationLevel> SelectAllIncluded();
+        public ICollection<Student> SelectStudentsBy(Guid educationLevelId);
     }
 }

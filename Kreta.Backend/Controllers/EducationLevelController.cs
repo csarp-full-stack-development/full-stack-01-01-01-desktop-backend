@@ -1,6 +1,7 @@
 ﻿using Kreta.Backend.Repos;
 using Kreta.Shared.Assamblers;
 using Kreta.Shared.Dtos;
+using Kreta.Shared.Extensions;
 using Kreta.Shared.Models;
 using Kreta.Shared.Models.SchoolCitizens;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,20 @@ namespace Kreta.Backend.Controllers
                 catch (Exception ex)
                 {
                 }
+            }
+            return BadRequest("Az adatok elérhetetlenek!");
+        }
+
+        [HttpGet("students/{educationLevelId}")]
+        public IActionResult GetStudentsBy(Guid educationLevelId)
+        {
+            List<Student> students= new();
+            if (_repo is not null)
+            {
+                students = _repo.SelectStudentsBy(educationLevelId).ToList();
+                if (students== null)
+                    students=new();
+                return Ok(students.Select(student => student.ToDto()));
             }
             return BadRequest("Az adatok elérhetetlenek!");
         }
