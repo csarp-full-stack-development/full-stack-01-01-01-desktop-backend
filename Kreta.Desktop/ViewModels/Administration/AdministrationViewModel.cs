@@ -6,7 +6,7 @@ namespace Kreta.Desktop.ViewModels.Administration
 {
     public partial class AdministrationViewModel : BaseViewModel
     {
-        private EducationLevelViewModel _educationLevelViewModel=new EducationLevelViewModel();
+        private EducationLevelViewModel _educationLevelViewModel=new ();
 
         [ObservableProperty]
         private BaseViewModel _currentAdministrationChildView;

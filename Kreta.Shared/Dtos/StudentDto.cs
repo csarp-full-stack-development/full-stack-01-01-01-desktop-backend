@@ -14,7 +14,5 @@ namespace Kreta.Shared.Dtos
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClass { get; set; }
         public Guid EducationLevelId { get; set; } = Guid.Empty;
-        public EducationLevel? EducationLevel { get; set; }
-
     }
 }

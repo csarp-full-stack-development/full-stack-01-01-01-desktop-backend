@@ -16,7 +16,6 @@ namespace Kreta.Shared.Extensions
                 PlaceOfBirth = student.PlaceOfBirth,
                 IsWoman = student.IsWoman,
                 EducationLevelId = student.EducationLevelId,
-                EducationLevel = student.EducationLevel,
                 SchoolYear = student.SchoolYear,
                 SchoolClass = student.SchoolClass,                
             };
@@ -33,7 +32,6 @@ namespace Kreta.Shared.Extensions
                 PlaceOfBirth = studentdto.PlaceOfBirth,
                 IsWoman = studentdto.IsWoman,
                 EducationLevelId = studentdto.EducationLevelId,
-                EducationLevel = studentdto.EducationLevel,
                 SchoolClass = studentdto.SchoolClass,  
                 SchoolYear = studentdto.SchoolYear,
             };

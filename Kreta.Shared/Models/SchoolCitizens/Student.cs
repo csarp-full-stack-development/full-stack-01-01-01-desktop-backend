@@ -31,7 +31,6 @@
 
         public Guid Id { get; set; }
         public Guid EducationLevelId { get; set; }
-        public virtual EducationLevel? EducationLevel {get; set;}
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDay { get; set; }
@@ -46,8 +45,7 @@
         public override string ToString()
         {
             string woman = IsWoman ? "nő" : "férfi";
-            string educationLevel = EducationLevel is not null ? $"{EducationLevel.StudentEducationLevel} ({EducationLevel.DurationOfEducation} év)" : "-";
-            return $"{HungarianName} {woman} ({SchoolYear}.{SchoolClass}) - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)}) ({educationLevel})";
+            return $"{HungarianName} {woman} ({SchoolYear}.{SchoolClass}) - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)})";
         }
     }
 }
