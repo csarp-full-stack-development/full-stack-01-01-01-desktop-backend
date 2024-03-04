@@ -10,18 +10,15 @@ namespace Kreta.Backend.Context
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<EducationLevel> EducationLevels { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         public KretaContext(DbContextOptions options) : base(options)
         {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EducationLevel>()
-                .HasMany(el => el.Students)
-                .WithOne(s => s.EducationLevel)
-                .HasForeignKey(s => s.EducationLevelId)
-                .IsRequired(false);
-
         }
     }
 }
+
