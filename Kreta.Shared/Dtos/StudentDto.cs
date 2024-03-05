@@ -1,5 +1,4 @@
 ﻿using Kreta.Shared.Models;
-using Kreta.Shared.Models.SchoolCitizens;
 
 namespace Kreta.Shared.Dtos
 {

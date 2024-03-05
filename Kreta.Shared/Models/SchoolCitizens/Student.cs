@@ -2,17 +2,18 @@
 {
     public class Student : IDbEntity<Student>
     {
-        public Student(string firstName, string lastName, DateTime birthsDay, bool isWooman, string placeOfBirth, int schoolYear, SchoolClassType schoolClass, Guid educationLevelId)
+        public Student(Guid id, string firstName, string lastName, DateTime birthsDay, bool isWooman, string placeOfBirth, Guid educationLevelId, Guid schoolClassId, Guid motherId, Guid fatherId)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             BirthDay = birthsDay;
             PlaceOfBirth = placeOfBirth;
             IsWoman = isWooman;
-            SchoolYear = schoolYear;
-            SchoolClass = schoolClass;
             EducationLevelId = educationLevelId;
+            SchoolClassID = schoolClassId;
+            MotherId = motherId;
+            FatherId = fatherId;
         }
 
         public Student()
@@ -22,22 +23,24 @@
             LastName = string.Empty;
             BirthDay = new DateTime();
             PlaceOfBirth = string.Empty;
-            IsWoman = false;
-            SchoolYear = 9;
-            SchoolClass = SchoolClassType.ClassA;
-            EducationLevelId = Guid.Empty;
+            IsWoman = false;            
             PlaceOfBirth = string.Empty;
+            EducationLevelId= Guid.Empty;
+            SchoolClassID = Guid.Empty;
+            MotherId= Guid.Empty;
+            FatherId= Guid.Empty;
         }
 
         public Guid Id { get; set; }
         public Guid EducationLevelId { get; set; }
+        public Guid SchoolClassID { get; set; }
+        public Guid MotherId { get; set; }
+        public Guid FatherId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDay { get; set; }
         public string PlaceOfBirth { get; set; }
         public bool IsWoman { get; set; }
-        public int SchoolYear { get; set; }
-        public SchoolClassType SchoolClass { get; set; }
         public bool IsMan => !IsWoman;
         public string HungarianName => $"{LastName} {FirstName}";
 
@@ -45,8 +48,8 @@
 
         public override string ToString()
         {
-            string woman = IsWoman ? "nő" : "férfi";
-            return $"{HungarianName} {woman} ({SchoolYear}.{SchoolClass}) - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)})";
+            string gender = IsWoman ? "nő" : "férfi";
+            return $"{HungarianName} {gender} - ({String.Format("{0:yyyy.MM.dd.}", BirthDay)})";
         }
     }
 }
