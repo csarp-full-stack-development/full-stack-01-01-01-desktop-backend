@@ -8,6 +8,29 @@ namespace Kreta.Backend.Context
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            Guid typeOfEducation1= Guid.NewGuid();
+            Guid typeOfEducation2 = Guid.NewGuid();
+            Guid typeOfEducation3 = Guid.NewGuid();
+
+            List<TypeOfEducation> typeOfEducations= new ()
+            {
+                new TypeOfEducation
+                {
+                    Id = typeOfEducation1,
+                    EducationName="szoftverfejlesztő és -tesztelő"
+                },
+                new TypeOfEducation 
+                { 
+                    Id = typeOfEducation2,
+                    EducationName="Idegen nyelvű ipari és kereskedelmi technikus"
+                },
+                new TypeOfEducation
+                {
+                    Id = typeOfEducation3,
+                    EducationName="Vállalkozási ügyviteli ügyintéző"
+                }
+            };
+
             Guid EducatuionLevelId1 = Guid.NewGuid();
             Guid EducatuionLevelId2 = Guid.NewGuid();
             List<EducationLevel> educationLevels = new()
@@ -16,7 +39,7 @@ namespace Kreta.Backend.Context
                 {
                     Id=EducatuionLevelId1,
                     StudentEducationLevel="érettségi",
-                    DurationOfEducation=4,
+                    DurationOfEducation=4,                   
                 },
                 new EducationLevel
                 {
@@ -24,6 +47,43 @@ namespace Kreta.Backend.Context
                     StudentEducationLevel="szakképzés",
                     DurationOfEducation=2,
                 }
+            };
+
+            Guid schoolClassId1 = Guid.NewGuid();
+            Guid schoolClassId2 = Guid.NewGuid();
+            Guid schoolClassId3 = Guid.NewGuid();
+            List<SchoolClass> schoolClasses = new List<SchoolClass>
+            {
+                new SchoolClass
+                {
+                    Id=schoolClassId1,
+                    SchoolYear=9,
+                    SchoolClassType=SchoolClassType.ClassA,
+                    YearOfEnrolment=2025,
+                    IsArchived=false,
+                    EducationLevelId=EducatuionLevelId1,
+                    TypeOfEducationId=typeOfEducation1,
+                },
+                new SchoolClass
+                {
+                    Id=schoolClassId2,
+                    SchoolYear=10,
+                    SchoolClassType=SchoolClassType.ClassB,
+                    YearOfEnrolment=2024,
+                    IsArchived=false,
+                    EducationLevelId=EducatuionLevelId1,
+                    TypeOfEducationId=typeOfEducation2,
+                },
+                new SchoolClass
+                {
+                    Id=schoolClassId3,
+                    SchoolYear=14,
+                    SchoolClassType=SchoolClassType.ClassB,
+                    YearOfEnrolment=2024,
+                    IsArchived=false,
+                    EducationLevelId=EducatuionLevelId1,
+                    TypeOfEducationId=typeOfEducation3,
+                },
             };
 
             List<Student> students = new()
@@ -35,9 +95,7 @@ namespace Kreta.Backend.Context
                     LastName="Jegy",
                     IsWoman=false,
                     BirthDay=new DateTime(2022,10,10),
-                    PlaceOfBirth="Szeged",
-                    SchoolYear=9,
-                    SchoolClass = SchoolClassType.ClassA,
+                    PlaceOfBirth="Szeged",                    
                     EducationLevelId=EducatuionLevelId1,
                 },
                 new Student
@@ -48,8 +106,6 @@ namespace Kreta.Backend.Context
                     IsWoman=true,
                     BirthDay=new DateTime(2021,4,4),
                     PlaceOfBirth="Kiskunhalas",
-                    SchoolYear=10,
-                    SchoolClass = SchoolClassType.ClassB,
                     EducationLevelId=EducatuionLevelId2,
                 },
                 new Student
@@ -60,8 +116,6 @@ namespace Kreta.Backend.Context
                     IsWoman=false,
                     BirthDay=new DateTime(2022,7,7),
                     PlaceOfBirth="Makó",
-                    SchoolYear=10,
-                    SchoolClass = SchoolClassType.ClassA,
                     EducationLevelId=EducatuionLevelId1,
                 },
                 new Student
@@ -72,8 +126,6 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Szabadka",
                     IsWoman=true,
                     BirthDay=new DateTime(2019,9,9),
-                    SchoolYear=12,
-                    SchoolClass = SchoolClassType.ClassC,
                     EducationLevelId=EducatuionLevelId1,
                 },
                 new Student
@@ -84,8 +136,6 @@ namespace Kreta.Backend.Context
                     IsWoman=false,
                     BirthDay=new DateTime(2017,7,7),
                     PlaceOfBirth="Apátfalva",
-                    SchoolYear=13,
-                    SchoolClass = SchoolClassType.ClassB,
                     EducationLevelId=EducatuionLevelId2,
                 }
             };

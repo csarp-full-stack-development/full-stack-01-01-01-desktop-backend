@@ -52,6 +52,7 @@ namespace Kreta.Backend.Extensions
             services.AddScoped<StudentAssambler>();
             services.AddScoped<SubjectAssambler>();
             services.AddScoped<EducationLevelAssambler>();
+            services.AddScoped<SchoolClassAssambler>();
         }
     }
 }

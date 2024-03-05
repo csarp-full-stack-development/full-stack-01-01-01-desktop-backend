@@ -12,6 +12,9 @@ namespace Kreta.Backend.Context
         public DbSet<EducationLevel> EducationLevels { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<SchoolClass> SchoolClasses { get; set; }
+        public DbSet<TypeOfEducation> TypeOfEducations {  get; set; } 
+
         public KretaContext(DbContextOptions options) : base(options)
         {
         }
