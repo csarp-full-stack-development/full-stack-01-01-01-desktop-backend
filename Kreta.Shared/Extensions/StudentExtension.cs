@@ -10,14 +10,16 @@ namespace Kreta.Shared.Extensions
             return new StudentDto
             {
                 Id = student.Id,
+                EducationLevelId = student.EducationLevelId,
+                SchoolClassID = student.SchoolClassID,
+                MotherId = student.MotherId,
+                FatherId = student.FatherId,
+                AddressId = student.AddressId,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 BirthDay = student.BirthDay,
-                PlaceOfBirth = student.PlaceOfBirth,
+                PlaceOfBirth = student.PlaceOfBirth,    
                 IsWoman = student.IsWoman,
-                EducationLevelId = student.EducationLevelId,
-                SchoolYear = student.SchoolYear,
-                SchoolClass = student.SchoolClass,                
             };
         }
 
@@ -26,14 +28,17 @@ namespace Kreta.Shared.Extensions
             return new Student
             {
                 Id = studentdto.Id,
+                EducationLevelId = studentdto.EducationLevelId,
+                SchoolClassID=studentdto.SchoolClassID,
+                MotherId=studentdto.MotherId,
+                FatherId=studentdto.FatherId,
+                AddressId = studentdto.AddressId,
                 FirstName = studentdto.FirstName,
                 LastName = studentdto.LastName,
                 BirthDay = studentdto.BirthDay,
-                PlaceOfBirth = studentdto.PlaceOfBirth,
-                IsWoman = studentdto.IsWoman,
-                EducationLevelId = studentdto.EducationLevelId,
-                SchoolClass = studentdto.SchoolClass,  
-                SchoolYear = studentdto.SchoolYear,
+                PlaceOfBirth=studentdto.PlaceOfBirth,
+                IsWoman=studentdto.IsWoman,
+
             };
         }
     }
