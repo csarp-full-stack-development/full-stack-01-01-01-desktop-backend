@@ -10,7 +10,7 @@ namespace Kreta.Backend.Controllers
     [Route("api/[controller]")]
     public class GradeController : BaseController<Grade, GradeDto>
     {
-        public GradeController(GradeAssambler assembler, IGradeRepo repo) : base(assembler, repo)
+        public GradeController(GradeAssambler assambler, IGradeRepo repo) : base(assambler, repo)
         {
         }
     }
