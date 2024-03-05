@@ -1,5 +1,4 @@
-﻿using Kreta.Shared.Models.SchoolCitizens;
-using Kreta.Shared.Responses;
+﻿using Kreta.Shared.Responses;
 
 namespace Kreta.HttpService.Services
 {

@@ -20,14 +20,12 @@ namespace Kreta.Desktop.ViewModels.Administration
         {
             _educationLevelViewModel= educationLevelViewModel;
             CurrentAdministrationChildView= _educationLevelViewModel;            
-            CurrentAdministrationChildView.InitializeAsync();
         }
 
         [RelayCommand]
         private void ShowEducationLevel()
         {
             CurrentAdministrationChildView = _educationLevelViewModel;
-            _educationLevelViewModel.InitializeAsync();
-        }
+       }
     }
 }

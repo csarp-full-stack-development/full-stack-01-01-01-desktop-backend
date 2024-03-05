@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Kreta.Shared.Models.SchoolCitizens;
 using Kreta.Shared.Models;
-using System.Linq;
 
 namespace Kreta.Desktop.ViewModels.SchoolCitizens
 {

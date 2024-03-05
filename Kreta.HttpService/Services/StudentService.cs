@@ -1,8 +1,6 @@
 ﻿using Kreta.Shared.Assamblers;
 using Kreta.Shared.Dtos;
 using Kreta.Shared.Models.SchoolCitizens;
-using System.Diagnostics;
-using System.Net.Http.Json;
 
 namespace Kreta.HttpService.Services
 {
