@@ -77,7 +77,7 @@
         </StackPanel>
         <DatePicker Grid.Row="5" Grid.Column="1" Margin="2 2 2 2" SelectedDate="{Binding SelectedStudent.BirthDay}"></DatePicker>
         <TextBox Grid.Row="6" Grid.Column="1" Margin="2 2 2 2" Padding="0 2" Text="{Binding SelectedStudent.PlaceOfBirth}"></TextBox>
-        <xwpftk:IntegerUpDown HorizontalAlignment="Left" MinWidth="40" Grid.Row="7" Grid.Column="1" Margin="2 2 100 2" Minimum="9" Maximum="14" Value="{Binding SelectedStudent.SchoolYear}"></xwpftk:IntegerUpDown>
+        
         <StackPanel Grid.Row="8" Grid.Column="1">
             <RadioButton GroupName="schoolclass" Margin="2 4 2 2">a  osztály</RadioButton>
             <RadioButton GroupName="schoolclass" Margin="2 4 2 2">b  osztály</RadioButton>
