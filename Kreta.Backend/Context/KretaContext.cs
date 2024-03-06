@@ -16,6 +16,7 @@ namespace Kreta.Backend.Context
         public DbSet<TypeOfEducation> TypeOfEducations {  get; set; } 
         public DbSet<SubjectType> SubjectTypes { get; set; }    
         public DbSet<Address> Addresss { get; set; }
+        public DbSet<PublicSpace> PublicSpaces { get; set; }
         public KretaContext(DbContextOptions options) : base(options)
         {
         }

@@ -8,6 +8,30 @@ namespace Kreta.Backend.Context
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            Guid publicSpaceId1 = Guid.NewGuid();
+            Guid publicSpaceId2 = Guid.NewGuid();
+            Guid publicSpaceId3 = Guid.NewGuid();
+
+            List<PublicSpace> publicSpaces = new List<PublicSpace>()
+            {
+                new PublicSpace()
+                {
+                    Id = publicSpaceId1,
+                    NameOfPublicSpace="utca",
+                },
+                new PublicSpace()
+                {
+                    Id = publicSpaceId2,
+                    NameOfPublicSpace="tér",
+                },
+                new PublicSpace()
+                {
+                    Id = publicSpaceId3,
+                    NameOfPublicSpace="sugárút",
+                },
+            };
+
+
             Guid addressId1= Guid.NewGuid();
             List<Address> addresses = new List<Address> 
             { 
@@ -20,7 +44,6 @@ namespace Kreta.Backend.Context
                     PostalCode=6733,                    
                 },
             };
-
 
             Guid typeOfSubject1 = Guid.NewGuid();
             Guid typeOfSubject2 = Guid.NewGuid();
@@ -35,21 +58,25 @@ namespace Kreta.Backend.Context
                 },
                 new SubjectType
                 {
-                    Id = typeOfSubject1,
+                    Id = typeOfSubject2,
                     SubjectTypeName="Idegen nyelv",
                 },
                 new SubjectType
                 {
-                    Id = typeOfSubject1,
+                    Id = typeOfSubject3,
                     SubjectTypeName="Közgazdaságtan",
                 },
             };
+
+            Guid subjectId1 = Guid.NewGuid();
+            Guid subjectId2 = Guid.NewGuid();
+            Guid subjectId3 = Guid.NewGuid();
 
             List<Subject> subjects = new List<Subject>
             {
                 new Subject
                 {
-                    Id=Guid.NewGuid(),
+                    Id=subjectId1,
                     SubjectName="Földrajz",
                     ShortName="Föci",
                     SubjectTypeId=typeOfSubject1,
@@ -58,7 +85,7 @@ namespace Kreta.Backend.Context
                 },
                 new Subject
                 {
-                    Id=Guid.NewGuid(),
+                    Id=subjectId2,
                     SubjectName="Angol",
                     ShortName="Angol",
                     SubjectTypeId=typeOfSubject2,
@@ -67,7 +94,7 @@ namespace Kreta.Backend.Context
                 },
                 new Subject
                 {
-                    Id=Guid.NewGuid(),
+                    Id=subjectId3,
                     SubjectName="Marketing",
                     ShortName="Market",
                     SubjectTypeId=typeOfSubject3,
@@ -217,7 +244,7 @@ namespace Kreta.Backend.Context
                 },
                 new Parent
                 {
-                    Id=parentId5,
+                    Id=parentId6,
                     FirstName="Milán",
                     LastName="Magas",
                     IsWoman=false,
