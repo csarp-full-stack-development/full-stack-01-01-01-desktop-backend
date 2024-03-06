@@ -23,7 +23,7 @@
         }
 
         public Guid Id { get; set; }
-        public Guid SubjectTypeId { get; set; }
+        public Guid? SubjectTypeId { get; set; }
         public string SubjectName { get; set; }
         public string ShortName { get; set; }
         public bool OptionalExaminationSubject { get; set; }
