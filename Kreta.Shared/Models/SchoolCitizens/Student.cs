@@ -10,7 +10,7 @@
             BirthDay = birthsDay;
             PlaceOfBirth = placeOfBirth;
             IsWoman = isWooman;
-            IsSchoolDivisionSecretary = isSchoolDivisionSecretary;
+            IsSchoolClassSecretary = isSchoolDivisionSecretary;
             EducationLevelId = educationLevelId;
             SchoolClassID = schoolClassId;            
             MotherId = motherId;
@@ -26,7 +26,7 @@
             BirthDay = new DateTime();
             PlaceOfBirth = string.Empty;
             IsWoman = false;            
-            IsSchoolDivisionSecretary = false;
+            IsSchoolClassSecretary = false;
             EducationLevelId= Guid.Empty;
             SchoolClassID = Guid.Empty;
             MotherId= Guid.Empty;
@@ -46,7 +46,7 @@
         public string PlaceOfBirth { get; set; }
         public bool IsWoman { get; set; }
         public bool IsMan => !IsWoman;
-        public bool IsSchoolDivisionSecretary { get; set; }
+        public bool IsSchoolClassSecretary { get; set; }
         public string HungarianName => $"{LastName} {FirstName}";
 
         public bool HasId => Id != Guid.Empty;

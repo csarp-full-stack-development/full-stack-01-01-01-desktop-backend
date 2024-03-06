@@ -8,6 +8,74 @@ namespace Kreta.Backend.Context
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            Guid addressId1= Guid.NewGuid();
+            List<Address> addresses = new List<Address> 
+            { 
+                new Address
+                {
+                    Id = addressId1,
+                    City="Szeged",
+                    StreetName="Vas",
+                    House=10,
+                    PostalCode=6733,                    
+                },
+            };
+
+
+            Guid typeOfSubject1 = Guid.NewGuid();
+            Guid typeOfSubject2 = Guid.NewGuid();
+            Guid typeOfSubject3 = Guid.NewGuid();
+
+            List<SubjectType> subjectTypes = new List<SubjectType>
+            {
+                new SubjectType
+                {
+                    Id = typeOfSubject1,
+                    SubjectTypeName="Természettudomány",                   
+                },
+                new SubjectType
+                {
+                    Id = typeOfSubject1,
+                    SubjectTypeName="Idegen nyelv",
+                },
+                new SubjectType
+                {
+                    Id = typeOfSubject1,
+                    SubjectTypeName="Közgazdaságtan",
+                },
+            };
+
+            List<Subject> subjects = new List<Subject>
+            {
+                new Subject
+                {
+                    Id=Guid.NewGuid(),
+                    SubjectName="Földrajz",
+                    ShortName="Föci",
+                    SubjectTypeId=typeOfSubject1,
+                    CompulsoryExaminationSubject=false,
+                    OptionalExaminationSubject=true,
+                },
+                new Subject
+                {
+                    Id=Guid.NewGuid(),
+                    SubjectName="Angol",
+                    ShortName="Angol",
+                    SubjectTypeId=typeOfSubject2,
+                    CompulsoryExaminationSubject=true,
+                    OptionalExaminationSubject=false,
+                },
+                new Subject
+                {
+                    Id=Guid.NewGuid(),
+                    SubjectName="Marketing",
+                    ShortName="Market",
+                    SubjectTypeId=typeOfSubject3,
+                    CompulsoryExaminationSubject=false,
+                    OptionalExaminationSubject=false,
+                }
+            };
+
             Guid typeOfEducation1= Guid.NewGuid();
             Guid typeOfEducation2 = Guid.NewGuid();
             Guid typeOfEducation3 = Guid.NewGuid();
@@ -17,7 +85,7 @@ namespace Kreta.Backend.Context
                 new TypeOfEducation
                 {
                     Id = typeOfEducation1,
-                    EducationName="szoftverfejlesztő és -tesztelő"
+                    EducationName="Szoftverfejlesztő és -tesztelő"
                 },
                 new TypeOfEducation 
                 { 
@@ -31,19 +99,19 @@ namespace Kreta.Backend.Context
                 }
             };
 
-            Guid EducatuionLevelId1 = Guid.NewGuid();
-            Guid EducatuionLevelId2 = Guid.NewGuid();
+            Guid EducationLevelId1 = Guid.NewGuid();
+            Guid EducationLevelId2 = Guid.NewGuid();
             List<EducationLevel> educationLevels = new()
             {
                 new EducationLevel
                 {
-                    Id=EducatuionLevelId1,
+                    Id=EducationLevelId1,
                     StudentEducationLevel="érettségi",
                     DurationOfEducation=4,                   
                 },
                 new EducationLevel
                 {
-                    Id=EducatuionLevelId2,
+                    Id=EducationLevelId2,
                     StudentEducationLevel="szakképzés",
                     DurationOfEducation=2,
                 }
@@ -61,7 +129,7 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassA,
                     YearOfEnrolment=2025,
                     IsArchived=false,
-                    EducationLevelId=EducatuionLevelId1,
+                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation1,
                 },
                 new SchoolClass
@@ -71,7 +139,7 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassB,
                     YearOfEnrolment=2024,
                     IsArchived=false,
-                    EducationLevelId=EducatuionLevelId1,
+                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation2,
                 },
                 new SchoolClass
@@ -81,10 +149,85 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassB,
                     YearOfEnrolment=2024,
                     IsArchived=false,
-                    EducationLevelId=EducatuionLevelId1,
+                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation3,
                 },
             };
+            Guid parentId1=Guid.NewGuid();
+            Guid parentId2 = Guid.NewGuid();
+            Guid parentId3 = Guid.NewGuid();
+            Guid parentId4 = Guid.NewGuid();
+            Guid parentId5 = Guid.NewGuid();
+            Guid parentId6 = Guid.NewGuid();
+            List<Parent> parents = new()
+            {
+                new Parent
+                {
+                    Id=parentId1,
+                    FirstName="Virág",
+                    LastName="Vas",
+                    IsWoman=true,
+                    BirthDay=new DateTime(1998,8,8),
+                    PlaceOfBirth="Szeged",
+                    MathersName="Érc Kitti",
+                },
+                new Parent
+                {
+                    Id=parentId2,
+                    FirstName="Petra",
+                    LastName="Pénzes",
+                    IsWoman=true,
+                    BirthDay=new DateTime(1997,7,7),
+                    PlaceOfBirth="Kistelek",
+                    MathersName="Szegény Szandi",
+
+                },
+                new Parent
+                {
+                    Id=parentId3,
+                    FirstName="Ferenc",
+                    LastName="Fukar",
+                    IsWoman=false,
+                    BirthDay=new DateTime(1995,5,5),
+                    PlaceOfBirth="Szeged",
+                    MathersName="Adakozó Andor",
+
+                },
+                new Parent
+                {
+                    Id=parentId4,
+                    FirstName="Fruzsi",
+                    LastName="Fukar",
+                    IsWoman=true,
+                    BirthDay=new DateTime(1994,4,4),
+                    PlaceOfBirth="Makó",
+                    MathersName="Adó Anna",
+
+                },
+                new Parent
+                {
+                    Id=parentId5,
+                    FirstName="Hedvig",
+                    LastName="Hosszú",
+                    IsWoman=true,
+                    BirthDay=new DateTime(1992,2,2),
+                    PlaceOfBirth="Szeged",
+                    MathersName="Alacsony Anikó",
+
+                },
+                new Parent
+                {
+                    Id=parentId5,
+                    FirstName="Milán",
+                    LastName="Magas",
+                    IsWoman=false,
+                    BirthDay=new DateTime(1992,2,2),
+                    PlaceOfBirth="Deszk",
+                    MathersName="Alacsony Anikó",
+
+                }
+            };
+
 
             List<Student> students = new()
             {
@@ -95,8 +238,10 @@ namespace Kreta.Backend.Context
                     LastName="Jegy",
                     IsWoman=false,
                     BirthDay=new DateTime(2022,10,10),
-                    PlaceOfBirth="Szeged",                    
-                    EducationLevelId=EducatuionLevelId1,
+                    PlaceOfBirth="Szeged",
+                    EducationLevelId=EducationLevelId1,
+                    MotherId=parentId2,
+                    AddressId=addressId1,
                 },
                 new Student
                 {
@@ -106,7 +251,7 @@ namespace Kreta.Backend.Context
                     IsWoman=true,
                     BirthDay=new DateTime(2021,4,4),
                     PlaceOfBirth="Kiskunhalas",
-                    EducationLevelId=EducatuionLevelId2,
+                    EducationLevelId=EducationLevelId2,
                 },
                 new Student
                 {
@@ -116,7 +261,7 @@ namespace Kreta.Backend.Context
                     IsWoman=false,
                     BirthDay=new DateTime(2022,7,7),
                     PlaceOfBirth="Makó",
-                    EducationLevelId=EducatuionLevelId1,
+                    EducationLevelId=EducationLevelId1,
                 },
                 new Student
                 {
@@ -126,7 +271,7 @@ namespace Kreta.Backend.Context
                     PlaceOfBirth="Szabadka",
                     IsWoman=true,
                     BirthDay=new DateTime(2019,9,9),
-                    EducationLevelId=EducatuionLevelId1,
+                    EducationLevelId=EducationLevelId1,
                 },
                 new Student
                 {
@@ -136,7 +281,21 @@ namespace Kreta.Backend.Context
                     IsWoman=false,
                     BirthDay=new DateTime(2017,7,7),
                     PlaceOfBirth="Apátfalva",
-                    EducationLevelId=EducatuionLevelId2,
+                    EducationLevelId=EducationLevelId2,
+                    MotherId=parentId1,                    
+
+                },
+                new Student
+                {
+                    Id=Guid.NewGuid(),
+                    FirstName="Fruzsina",
+                    LastName="Fukar",
+                    IsWoman=false,
+                    BirthDay=new DateTime(2019,9,9),
+                    PlaceOfBirth="Miskolc",
+                    EducationLevelId=EducationLevelId2,
+                    MotherId=parentId4,
+                    FatherId=parentId3,
                 }
             };
             List<Teacher> teachers = new()
@@ -199,79 +358,17 @@ namespace Kreta.Backend.Context
                     MathersName="Kecskeméti Kati"
                 }
             };
-            List<Parent> parents = new()
-            {
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Virág",
-                    LastName="Vas",
-                    IsWoman=true,
-                    BirthDay=new DateTime(1998,8,8),
-                    PlaceOfBirth="Szeged",
-                    MathersName="Érc Kitti",
-                },
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Petra",
-                    LastName="Pénzes",
-                    IsWoman=true,
-                    BirthDay=new DateTime(1997,7,7),
-                    PlaceOfBirth="Kistelek",
-                    MathersName="Szegény Szandi",
 
-                },
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Ferenc",
-                    LastName="Fukar",
-                    IsWoman=false,
-                    BirthDay=new DateTime(1995,5,5),
-                    PlaceOfBirth="Szeged",
-                    MathersName="Adakozó Andor",
-
-                },
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Fruzsi",
-                    LastName="Fukar",
-                    IsWoman=true,
-                    BirthDay=new DateTime(1994,4,4),
-                    PlaceOfBirth="Makó",
-                    MathersName="Adó Anna",
-
-                },
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Hedvig",
-                    LastName="Hosszú",
-                    IsWoman=true,
-                    BirthDay=new DateTime(1992,2,2),
-                    PlaceOfBirth="Szeged",
-                    MathersName="Alacsony Anikó",
-
-                },
-                new Parent
-                {
-                    Id=Guid.NewGuid(),
-                    FirstName="Milán",
-                    LastName="Magas",
-                    IsWoman=false,
-                    BirthDay=new DateTime(1992,2,2),
-                    PlaceOfBirth="Deszk",
-                    MathersName="Alacsony Anikó",
-
-                }
-            };
+            modelBuilder.Entity<EducationLevel>().HasData(educationLevels);
+            modelBuilder.Entity<TypeOfEducation>().HasData(typeOfEducations);
+            modelBuilder.Entity<SubjectType>().HasData(subjectTypes);
+            modelBuilder.Entity<Address>().HasData(addresses);
 
             modelBuilder.Entity<Student>().HasData(students);
             modelBuilder.Entity<Teacher>().HasData(teachers);
             modelBuilder.Entity<Parent>().HasData(parents);
-            modelBuilder.Entity<EducationLevel>().HasData(educationLevels);
+            modelBuilder.Entity<SchoolClass>().HasData(schoolClasses);
+            modelBuilder.Entity<Subject>().HasData(subjects);
         }
     }
 }
