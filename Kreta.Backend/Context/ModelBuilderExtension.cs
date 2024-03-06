@@ -247,8 +247,8 @@ namespace Kreta.Backend.Context
                 new Student
                 {
                     Id=Guid.NewGuid(),
-                    FirstName="Vas",
-                    LastName="Valér",
+                    FirstName="Valér",
+                    LastName="Vas",
                     IsWoman=false,
                     BirthDay=new DateTime(2022,7,7),
                     PlaceOfBirth="Makó",
@@ -257,8 +257,8 @@ namespace Kreta.Backend.Context
                 new Student
                 {
                     Id=Guid.NewGuid(),
-                    FirstName="Kis",
-                    LastName="Márta",
+                    FirstName="Márta",
+                    LastName="Kis",
                     PlaceOfBirth="Szabadka",
                     IsWoman=true,
                     BirthDay=new DateTime(2019,9,9),
@@ -267,8 +267,8 @@ namespace Kreta.Backend.Context
                 new Student
                 {
                     Id=Guid.NewGuid(),
-                    FirstName="Magas",
-                    LastName="Milán",
+                    FirstName="Milán",
+                    LastName="Magas",
                     IsWoman=false,
                     BirthDay=new DateTime(2017,7,7),
                     PlaceOfBirth="Apátfalva",
@@ -285,6 +285,18 @@ namespace Kreta.Backend.Context
                     BirthDay=new DateTime(2019,9,9),
                     PlaceOfBirth="Miskolc",
                     EducationLevelId=EducationLevelId2,
+                    MotherId=parentId4,
+                    FatherId=parentId3,
+                },
+                new Student
+                {
+                    Id=Guid.NewGuid(),
+                    FirstName="Kinga",
+                    LastName="Kilógó",
+                    IsWoman=false,
+                    BirthDay=new DateTime(2019,9,9),
+                    PlaceOfBirth="Miskolc",
+                    EducationLevelId=Guid.Empty,
                     MotherId=parentId4,
                     FatherId=parentId3,
                 }
