@@ -2,7 +2,7 @@
 
 namespace Kreta.HttpService.Services
 {
-    public interface IEducationLavelService : IBaseService<EducationLevel>
+    public interface ISubjectService : IBaseService<Subject>
     {
     }
 }

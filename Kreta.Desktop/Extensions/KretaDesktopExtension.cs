@@ -21,7 +21,13 @@ namespace Kreta.Desktop.Extensions
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<ITeacherService, TeacherService>();
             services.AddScoped<IParentService, ParentService>();
-            services.AddScoped<IEducationLevelService, EducationLevelService>();
+            services.AddScoped<IEducationLavelService, EducationLevelService>();
+            services.AddScoped<IGradeService, GradeService>();
+            services.AddScoped<IPublicSpaceService, PublicSpaceService>();
+            services.AddScoped<ISchoolClassService, SchoolClassService>();
+            services.AddScoped<ISubjectService, SubjectService>();
+            services.AddScoped<ISubjectTypeService, SubjectTypeService>();
+            services.AddScoped<ITypeOfEducationService, TypleOfEducationService>()
 
         }
 
@@ -33,6 +39,11 @@ namespace Kreta.Desktop.Extensions
             services.AddScoped<StudentAssambler>();
             services.AddScoped<SubjectAssambler>();
             services.AddScoped<EducationLevelAssambler>();
+            services.AddScoped<SchoolClassAssambler>();
+            services.AddScoped<AddressAssambler>();
+            services.AddScoped<PublicSpaceAssambler>();
+            services.AddScoped<SchoolClassAssambler>();
+            services.AddScoped<TypeOfEducationAssambler>();
         }
     }
 }

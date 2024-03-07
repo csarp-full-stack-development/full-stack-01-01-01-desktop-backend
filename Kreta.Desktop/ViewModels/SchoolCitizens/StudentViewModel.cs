@@ -14,7 +14,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
     public partial class StudentViewModel : BaseViewModel
     {        
         private readonly IStudentService? _studentService;
-        private readonly IEducationLevelService? _educationLevelService;
+        private readonly IPublicSpaceService? _educationLevelService;
 
         [ObservableProperty]
         private ObservableCollection<Student> _students = new();
@@ -31,7 +31,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
             _selectedStudent = new Student();
         }
 
-        public StudentViewModel(IStudentService? studentService, IEducationLevelService? educationLevelService)
+        public StudentViewModel(IStudentService? studentService, IPublicSpaceService? educationLevelService)
         {
             _selectedStudent = new Student();
             _studentService = studentService;
