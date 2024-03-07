@@ -11,7 +11,7 @@ namespace Kreta.Backend.Repos
     {
         private readonly IDbContextFactory<TDbContext> _dbContextFactory;
         private readonly DbContext _dbContext;
-        private DbSet<TEntity>? _dbSet;
+        private readonly DbSet<TEntity>? _dbSet;
 
         public RepositoryBase(IDbContextFactory<TDbContext> dbContextFactory)
         {
