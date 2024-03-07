@@ -379,7 +379,6 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassA,
                     YearOfEnrolment=2025,
                     IsArchived=false,
-                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation1,
                     HeadTeacherId=teacherId2,
                 },
@@ -390,7 +389,6 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassB,
                     YearOfEnrolment=2024,
                     IsArchived=false,
-                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation2,
                 },
                 new SchoolClass
@@ -400,7 +398,6 @@ namespace Kreta.Backend.Context
                     SchoolClassType=SchoolClassType.ClassB,
                     YearOfEnrolment=2024,
                     IsArchived=false,
-                    EducationLevelId=EducationLevelId1,
                     TypeOfEducationId=typeOfEducation3,
                 },
             };
@@ -415,6 +412,7 @@ namespace Kreta.Backend.Context
             modelBuilder.Entity<Parent>().HasData(parents);
             modelBuilder.Entity<SchoolClass>().HasData(schoolClasses);
             modelBuilder.Entity<Subject>().HasData(subjects);
+            modelBuilder.Entity<PublicSpace>().HasData(publicSpaces); 
         }
     }
 }

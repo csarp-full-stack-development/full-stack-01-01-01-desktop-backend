@@ -6,11 +6,11 @@ namespace Kreta.Shared.Dtos
     {
         public Guid Id { get; set; }
         public bool HasId => Id != Guid.Empty;
-        public int SchoolYear { get; set; } = -1;
+        public int SchoolYear { get; set; }
         public SchoolClassType SchoolClassType { get; set; }
         public Guid? TypeOfEducationId { get; set; }
-        public Guid? EducationLevelId { get; set; }
+        public Guid? HeadTeacherId { get; set; }
         public int YearOfEnrolment { get; set; }
-        public bool IsArchived { get; set; } = false;
+        public bool IsArchived { get; set; }
     }
 }
