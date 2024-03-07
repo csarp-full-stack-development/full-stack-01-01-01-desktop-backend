@@ -14,9 +14,9 @@ namespace Kreta.Backend.Controllers
         private readonly Assambler<Tmodel,TDto> _assambler;
         private readonly IRepositoryBase<Tmodel> _repo;
 
-        public BaseController(Assambler<Tmodel, TDto> assembler, IRepositoryBase<Tmodel> repo)
+        public BaseController(Assambler<Tmodel, TDto> assambler, IRepositoryBase<Tmodel> repo)
         {
-            _assambler = assembler;
+            _assambler = assambler;
             _repo = repo;
         }
 

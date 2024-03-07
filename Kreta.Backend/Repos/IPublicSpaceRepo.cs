@@ -2,7 +2,7 @@
 
 namespace Kreta.Backend.Repos
 {
-    public interface IPublicSpace : IRepositoryBase<PublicSpace>
+    public interface IPublicSpaceRepo : IRepositoryBase<PublicSpace>
     {
     }
 }

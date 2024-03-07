@@ -2,7 +2,7 @@
 
 namespace Kreta.Backend.Repos
 {
-    public interface ISchoolClass : IRepositoryBase<SchoolClass>
+    public interface ISchoolClassRepo : IRepositoryBase<SchoolClass>
     {
     }
 }

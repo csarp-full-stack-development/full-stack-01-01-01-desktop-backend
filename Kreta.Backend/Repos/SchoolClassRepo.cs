@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kreta.Backend.Repos
 {
-    public class SchoolClass<TDbContext> : RepositoryBase<TDbContext, SchoolClass>, ISchoolClass
+    public class SchoolClassRepo<TDbContext> : RepositoryBase<TDbContext, SchoolClass>, ISchoolClassRepo
         where TDbContext : DbContext
     {
-        public SchoolClass(IDbContextFactory<TDbContext> dbContextFactory) : base(dbContextFactory)
+        public SchoolClassRepo(IDbContextFactory<TDbContext> dbContextFactory) : base(dbContextFactory)
         {
         }
     }
