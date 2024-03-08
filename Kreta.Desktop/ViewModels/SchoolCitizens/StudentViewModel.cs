@@ -14,7 +14,7 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
     public partial class StudentViewModel : BaseViewModel
     {        
         private readonly IStudentService? _studentService;
-        private readonly IPublicSpaceService? _educationLevelService;
+        private readonly IEducationLavelService? _educationLavelService;
 
         [ObservableProperty]
         private ObservableCollection<Student> _students = new();
@@ -31,11 +31,11 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
             _selectedStudent = new Student();
         }
 
-        public StudentViewModel(IStudentService? studentService, IPublicSpaceService? educationLevelService)
+        public StudentViewModel(IStudentService? studentService, IEducationLavelService? educationLevelService)
         {
             _selectedStudent = new Student();
             _studentService = studentService;
-            _educationLevelService = educationLevelService;
+            _educationLavelService = educationLevelService;
         }
 
         public async override Task InitializeAsync()
@@ -82,9 +82,9 @@ namespace Kreta.Desktop.ViewModels.SchoolCitizens
 
         private async Task UpdateView()
         {
-            if (_educationLevelService is not null)
+            if (_educationLavelService is not null)
             {
-                List<EducationLevel> educationLevels = await _educationLevelService.SelectAllAsync();
+                List<EducationLevel> educationLevels = await _educationLavelService.SelectAllAsync();
                 EducationLevels = new ObservableCollection<EducationLevel>(educationLevels);
             }
             if (_studentService is not null)

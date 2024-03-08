@@ -6,7 +6,7 @@ namespace Kreta.HttpService.Services
 {
     public class SchoolClassService : BaseService<SchoolClass, SchoolClassDto>, ISchoolClassService
     {
-        public SchoolClassService(IHttpClientFactory? httpClientFactory, Assambler<SchoolClass, SchoolClassDto> assambler) : base(httpClientFactory, assambler)
+        public SchoolClassService(IHttpClientFactory? httpClientFactory, SchoolClassAssambler assambler) : base(httpClientFactory, assambler)
         {
         }
     }

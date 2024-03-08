@@ -6,7 +6,7 @@ namespace Kreta.HttpService.Services
 {
     public class GradeService : BaseService<Grade, GradeDto>, IGradeService
     {
-        public GradeService(IHttpClientFactory? httpClientFactory, Assambler<Grade, GradeDto> assambler) : base(httpClientFactory, assambler)
+        public GradeService(IHttpClientFactory? httpClientFactory, GradeAssambler assambler) : base(httpClientFactory, assambler)
         {
         }
     }

@@ -6,7 +6,7 @@ namespace Kreta.HttpService.Services
 {
     public class SubjectTypeService : BaseService<SubjectType, SubjectTypeDto>, ISubjectTypeService
     {
-        public SubjectTypeService(IHttpClientFactory? httpClientFactory, Assambler<SubjectType, SubjectTypeDto> assambler) : base(httpClientFactory, assambler)
+        public SubjectTypeService(IHttpClientFactory? httpClientFactory, SubjectTypeAssambler assambler) : base(httpClientFactory, assambler)
         {
         }
     }

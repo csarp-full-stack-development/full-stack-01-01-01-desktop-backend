@@ -3,14 +3,14 @@ using Kreta.Shared.Models;
 
 namespace Kreta.Shared.Assamblers
 {
-    public class AddressAssambler : Assambler<Address, PublicScpaceDto>
+    public class AddressAssambler : Assambler<Address, AddressDto>
     {
-        public override PublicScpaceDto ToDto(Address domainEntity)
+        public override AddressDto ToDto(Address domainEntity)
         {
             throw new NotImplementedException();
         }
 
-        public override Address ToModel(PublicScpaceDto dto)
+        public override Address ToModel(AddressDto dto)
         {
             throw new NotImplementedException();
         }

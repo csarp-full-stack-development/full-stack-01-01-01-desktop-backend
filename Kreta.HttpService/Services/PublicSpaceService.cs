@@ -4,9 +4,9 @@ using Kreta.Shared.Models;
 
 namespace Kreta.HttpService.Services
 {
-    public class PublicSpaceService : BaseService<PublicSpace, PublicScpaceDto>, IPublicSpaceService
+    public class PublicSpaceService : BaseService<PublicSpace, PublicSpaceDto>, IPublicSpaceService
     {
-        public PublicSpaceService(IHttpClientFactory? httpClientFactory, Assambler<PublicSpace, PublicScpaceDto> assambler) : base(httpClientFactory, assambler)
+        public PublicSpaceService(IHttpClientFactory? httpClientFactory, PublicSpaceAssambler assambler) : base(httpClientFactory, assambler)
         {
         }
     }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Kreta.Desktop.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace Kreta.Desktop.ViewModels.SchoolClasses
 {
@@ -37,8 +38,9 @@ namespace Kreta.Desktop.ViewModels.SchoolClasses
         private BaseViewModel _currentSchoolClassChildView = new SchoolClassesManagmentViewModel();
 
         [RelayCommand]
-        public void ShowSchoolClassManagmentView()
+        public async Task ShowSchoolClassManagmentView()
         {
+            await _schoolClassesManagmentViewModel.InitializeAsync();
             CurrentSchoolClassChildView = _schoolClassesManagmentViewModel;
         }
 

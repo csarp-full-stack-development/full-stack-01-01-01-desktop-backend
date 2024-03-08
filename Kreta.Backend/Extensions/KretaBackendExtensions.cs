@@ -46,6 +46,7 @@ namespace Kreta.Backend.Extensions
             services.AddScoped<IEducationLevelRepo, EducationLevelInMemoryRepo>();
             services.AddScoped<IAddressRepo, AddressInMemoryRepo>();
             services.AddScoped<IPublicSpaceRepo,PublicScpaceInMemoryRepo>();
+            services.AddScoped<ISchoolClassRepo, SchoolClassInMemoryRepo>();
         }
 
         public static void ConfigureAssamblers(this IServiceCollection services)
