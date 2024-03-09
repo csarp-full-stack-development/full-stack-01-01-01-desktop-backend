@@ -33,7 +33,9 @@
 
         public override string ToString()
         {
-            return $"{SubjectName}";
+            string compulsory = CompulsoryExaminationSubject ? "kötelező érettségi tárgy": "";
+            string optional= OptionalExaminationSubject ? "választható érettségi tárgy" : "";
+            return $"{SubjectName} ({ShortName}) {compulsory} {optional}";
         }
 
     }

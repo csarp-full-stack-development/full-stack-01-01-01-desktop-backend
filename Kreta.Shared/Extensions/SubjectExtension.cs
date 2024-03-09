@@ -11,6 +11,7 @@ namespace Kreta.Shared.Extensions
             {
                 Id = subject.Id,
                 SubjectName = subject.SubjectName,
+                ShortName = subject.ShortName,
                 CompulsoryExaminationSubject=subject.CompulsoryExaminationSubject,
                 OptionalExaminationSubject = subject.OptionalExaminationSubject,
 
@@ -22,6 +23,7 @@ namespace Kreta.Shared.Extensions
             return new Subject
             {
                 Id = subjectDto.Id,
+                ShortName=subjectDto.ShortName,
                 SubjectName=subjectDto.SubjectName,
                 CompulsoryExaminationSubject=subjectDto.CompulsoryExaminationSubject,
                 OptionalExaminationSubject= subjectDto.OptionalExaminationSubject,

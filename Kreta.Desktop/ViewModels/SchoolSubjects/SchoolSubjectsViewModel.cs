@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Kreta.Desktop.ViewModels.Base;
 using Kreta.Desktop.ViewModels.SchoolClasses;
+using System.Threading.Tasks;
 
 namespace Kreta.Desktop.ViewModels.SchoolSubjects
 {
@@ -12,7 +13,7 @@ namespace Kreta.Desktop.ViewModels.SchoolSubjects
         private readonly SubjectsOfTeachersViewModel _subjectsOfTeachersViewModel;
 
         [ObservableProperty]
-        private BaseViewModel _currentSchoolClassChildView = new SchoolClassesManagmentViewModel();
+        private BaseViewModel _currentSchoolClassChildView = new SubjectsManagmentViewModel();
 
         public SchoolSubjectsViewModel()
         {
@@ -31,8 +32,9 @@ namespace Kreta.Desktop.ViewModels.SchoolSubjects
         }
 
         [RelayCommand]
-        private void ShowSubjectsManagmentView()
+        private async Task ShowSubjectsManagmentView()
         {
+            await _subjectsManagmentViewModel.InitializeAsync();
             CurrentSchoolClassChildView = _subjectsManagmentViewModel;
         }
 

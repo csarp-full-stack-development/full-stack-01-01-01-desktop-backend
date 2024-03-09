@@ -68,6 +68,7 @@
         <ComboBox Grid.Row="6" Grid.Column="2" Margin="2 2 2 2"></ComboBox>
         <ComboBox Grid.Row="7" Grid.Column="2" Margin="2 2 2 2"></ComboBox>
         <ListBox Grid.Row="9" Grid.ColumnSpan="2"
+                 Margin="2 2 2 2"
                  ItemsSource="{Binding SchoolClasses}"
                  SelectedItem="{Binding SelectedSchoolClass}"
                  />
