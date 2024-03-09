@@ -33,8 +33,6 @@ namespace Kreta.Shared.Models
         public Guid? HeadTeacherId { get; set; }
         public int YearOfEnrolment {  get; set; }
         public bool IsArchived { get; set; }
-        // N:M
-        public virtual ICollection<SchoolClassSubjects>? Subjects { get; set; }
 
         public override string ToString()
         {
