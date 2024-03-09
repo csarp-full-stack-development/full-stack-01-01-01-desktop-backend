@@ -28,6 +28,7 @@
         public string ShortName { get; set; }
         public bool OptionalExaminationSubject { get; set; }
         public bool CompulsoryExaminationSubject { get; set; }
+        public virtual ICollection<SchoolClassSubjects>? SchoolClasses { get; set; }
 
         public bool HasId => Id != Guid.Empty;
 
