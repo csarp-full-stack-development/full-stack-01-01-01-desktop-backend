@@ -5,10 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kreta.Desktop.Views.SchoolClasses"
              xmlns:viewModels="clr-namespace:Kreta.Desktop.ViewModels.SchoolClasses"
+             xmlns:converters="clr-namespace:Kreta.Desktop.Converters"
              xmlns:xwpftk="http://schemas.xceed.com/wpf/xaml/toolkit" 
              d:DataContext="{d:DesignInstance Type=viewModels:SchoolClassesManagmentViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:EnumBooleanConverter x:Key="enumBooleanConverter"/>
+    </UserControl.Resources>
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />
@@ -59,9 +63,9 @@
         </StackPanel>
         <xwpftk:IntegerUpDown HorizontalAlignment="Left" MinWidth="40" Grid.Row="2" Grid.Column="1" Margin="2 2 100 2" Minimum="1" Maximum="14" Value="{Binding SelectedSchoolClass.SchoolYear}"></xwpftk:IntegerUpDown>
         <StackPanel Grid.Row="3" Grid.Column="1">
-            <RadioButton GroupName="schoolclass" Margin="2 4 2 2">a  osztály</RadioButton>
-            <RadioButton GroupName="schoolclass" Margin="2 4 2 2">b  osztály</RadioButton>
-            <RadioButton GroupName="schoolclass" Margin="2 4 2 2">c  osztály</RadioButton>
+            <RadioButton GroupName="schoolclass" Margin="2 4 2 2" IsChecked="{Binding Path=SelectedSchoolClass.SchoolClassType,Converter={StaticResource enumBooleanConverter},ConverterParameter=ClassA}">a  osztály</RadioButton>
+            <RadioButton GroupName="schoolclass" Margin="2 4 2 2" IsChecked="{Binding Path=SelectedSchoolClass.SchoolClassType,Converter={StaticResource enumBooleanConverter},ConverterParameter=ClassB}">b  osztály</RadioButton>
+            <RadioButton GroupName="schoolclass" Margin="2 4 2 2" IsChecked="{Binding Path=SelectedSchoolClass.SchoolClassType,Converter={StaticResource enumBooleanConverter},ConverterParameter=ClassC}">c  osztály</RadioButton>
         </StackPanel>
         <xwpftk:IntegerUpDown HorizontalAlignment="Left" MinWidth="40" Grid.Row="4" Grid.Column="1" Margin="2 2 100 2" Minimum="2000" Maximum="4000" Value="{Binding SelectedSchoolClass.YearOfEnrolment}"></xwpftk:IntegerUpDown>
         <CheckBox Grid.Row="5" Grid.Column="2" Margin="2 6 2 2" IsChecked="{Binding SelectedSchoolClass.IsArchived}"></CheckBox>

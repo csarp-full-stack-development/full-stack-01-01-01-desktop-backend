@@ -36,7 +36,15 @@ namespace Kreta.Shared.Models
 
         public override string ToString()
         {
-            return $"{SchoolYear}.- {YearOfEnrolment}";
+            string className = string.Empty;
+            switch (SchoolClassType)
+            {
+                case SchoolClassType.ClassA: className = "a"; break;
+                case SchoolClassType.ClassB: className = "b"; break;
+                case SchoolClassType.ClassC: className = "c"; break;
+            }
+            string archived = IsArchived ? "archivált" : string.Empty;
+            return $"{SchoolYear}.{className} ({YearOfEnrolment}) {archived}";
         }
     }
 }
