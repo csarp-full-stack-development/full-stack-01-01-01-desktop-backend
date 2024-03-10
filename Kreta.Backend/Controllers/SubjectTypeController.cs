@@ -10,7 +10,7 @@ namespace Kreta.Backend.Controllers
     [Route("api/[controller]")]
     public class SubjectTypeController : BaseController<SubjectType, SubjectTypeDto>
     {
-        public SubjectTypeController(Assambler<SubjectType, SubjectTypeDto> assambler, IRepositoryBase<SubjectType> repo) : base(assambler, repo)
+        public SubjectTypeController(SubjectTypeAssambler? assambler, IRepositoryBase<SubjectType>? repo) : base(assambler, repo)
         {
         }
     }

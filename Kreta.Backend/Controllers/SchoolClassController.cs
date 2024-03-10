@@ -10,7 +10,7 @@ namespace Kreta.Backend.Controllers
     [Route("api/[controller]")]
     public class SchoolClassController : BaseController<SchoolClass, SchoolClassDto>
     {
-        public SchoolClassController(SchoolClassAssambler assambler, ISchoolClassRepo repo) : base(assambler, repo)
+        public SchoolClassController(SchoolClassAssambler? assambler, ISchoolClassRepo? repo) : base(assambler, repo)
         {
         }
     }

@@ -10,7 +10,7 @@ namespace Kreta.Backend.Controllers
     [Route("api/[controller]")]
     public class PublicSpaceController : BaseController<PublicSpace, PublicSpaceDto>
     {
-        public PublicSpaceController(PublicSpaceAssambler assambler, IPublicSpaceRepo repo) : base(assambler, repo)
+        public PublicSpaceController(PublicSpaceAssambler? assambler, IPublicSpaceRepo? repo) : base(assambler, repo)
         {
         }
     }

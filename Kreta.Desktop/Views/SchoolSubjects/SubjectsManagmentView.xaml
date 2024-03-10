@@ -59,7 +59,7 @@
         <CheckBox Grid.Row="4" Grid.Column="1" Margin="2 6 2 2" IsChecked="{Binding SelectedSubject.CompulsoryExaminationSubject}"></CheckBox>
         <CheckBox Grid.Row="5" Grid.Column="1" Margin="2 6 2 2" IsChecked="{Binding SelectedSubject.OptionalExaminationSubject}"></CheckBox>
         <ComboBox Grid.Row="6" Grid.Column="1" Margin="2 2 2 2"></ComboBox>
-        <ListBox Grid.Row="8" Grid.Column="1" Margin="2 2 2 2"
+        <ListBox Grid.Row="8" Grid.ColumnSpan="2" Margin="2 2 2 2"
                  ItemsSource="{Binding Subjects}"
                  SelectedItem="{Binding SelectedSubject}"
         />
