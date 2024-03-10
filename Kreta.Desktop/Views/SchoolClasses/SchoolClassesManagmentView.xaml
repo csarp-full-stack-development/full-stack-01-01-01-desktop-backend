@@ -68,9 +68,9 @@
             <RadioButton GroupName="schoolclass" Margin="2 4 2 2" IsChecked="{Binding Path=SelectedSchoolClass.SchoolClassType,Converter={StaticResource enumBooleanConverter},ConverterParameter=ClassC}">c  osztály</RadioButton>
         </StackPanel>
         <xwpftk:IntegerUpDown HorizontalAlignment="Left" MinWidth="40" Grid.Row="4" Grid.Column="1" Margin="2 2 100 2" Minimum="2000" Maximum="4000" Value="{Binding SelectedSchoolClass.YearOfEnrolment}"></xwpftk:IntegerUpDown>
-        <CheckBox Grid.Row="5" Grid.Column="2" Margin="2 6 2 2" IsChecked="{Binding SelectedSchoolClass.IsArchived}"></CheckBox>
-        <ComboBox Grid.Row="6" Grid.Column="2" Margin="2 2 2 2"></ComboBox>
-        <ComboBox Grid.Row="7" Grid.Column="2" Margin="2 2 2 2"></ComboBox>
+        <CheckBox Grid.Row="5" Grid.Column="1" Margin="2 6 2 2" IsChecked="{Binding SelectedSchoolClass.IsArchived}"></CheckBox>
+        <ComboBox Grid.Row="6" Grid.Column="1" Margin="2 2 2 2"></ComboBox>
+        <ComboBox Grid.Row="7" Grid.Column="1" Margin="2 2 2 2"></ComboBox>
         <ListBox Grid.Row="9" Grid.ColumnSpan="2"
                  Margin="2 2 2 2"
                  ItemsSource="{Binding SchoolClasses}"
