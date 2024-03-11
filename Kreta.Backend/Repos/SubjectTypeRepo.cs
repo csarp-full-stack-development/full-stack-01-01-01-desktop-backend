@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Kreta.Backend.Repos
 {
-    public class SubjectTypeRepo<TDbContext> : RepositoryBase<TDbContext, SubjectType>, ISubjectType
+    public class SubjectTypeRepo<TDbContext> : RepositoryBase<TDbContext, SubjectType>, ISubjectTypeRepo
         where TDbContext : DbContext
     {
         public SubjectTypeRepo(IDbContextFactory<TDbContext> dbContextFactory) : base(dbContextFactory)

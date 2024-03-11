@@ -2,7 +2,7 @@
 
 namespace Kreta.Backend.Repos
 {
-    public interface ISubjectType : IRepositoryBase<SubjectType>
+    public interface ISubjectTypeRepo : IRepositoryBase<SubjectType>
     {
     }
 }
