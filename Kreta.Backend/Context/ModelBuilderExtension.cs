@@ -31,18 +31,39 @@ namespace Kreta.Backend.Context
                 },
             };
 
-
             Guid addressId1= Guid.NewGuid();
+            Guid addressId2 = Guid.NewGuid();
+            Guid addressId3 = Guid.NewGuid();
             List<Address> addresses = new List<Address> 
             { 
                 new Address
                 {
                     Id = addressId1,
                     City="Szeged",
-                    PublicSpaceName="Vas",
+                    PublicSpaceName="Szentháromság",
                     House=10,
-                    PostalCode=6733,                    
+                    PostalCode=6722,    
+                    PublicScapeID=publicSpaceId1,
                 },
+                new Address
+                {
+                    Id = addressId2,
+                    City="Szeged",
+                    PublicSpaceName="Kossuth Lajos",
+                    House=85,
+                    PostalCode=6724,
+                    PublicScapeID=publicSpaceId3,
+                },
+                new Address
+                {
+                    Id = addressId3,
+                    City="Szeged",
+                    PublicSpaceName="Boldogasszony",
+                    House=85,
+                    PostalCode=6722,
+                    PublicScapeID=publicSpaceId3,
+                },
+
             };
 
             Guid typeOfSubject1 = Guid.NewGuid();
