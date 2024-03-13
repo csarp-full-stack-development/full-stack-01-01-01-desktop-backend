@@ -1,4 +1,5 @@
 ﻿using Kreta.Shared.Dtos;
+using Kreta.Shared.Extensions;
 using Kreta.Shared.Models;
 
 namespace Kreta.Shared.Assamblers
@@ -7,12 +8,12 @@ namespace Kreta.Shared.Assamblers
     {
         public override AddressDto ToDto(Address domainEntity)
         {
-            throw new NotImplementedException();
+            return domainEntity.ToDto();
         }
 
         public override Address ToModel(AddressDto dto)
         {
-            throw new NotImplementedException();
+            return dto.ToModel();
         }
     }
 }

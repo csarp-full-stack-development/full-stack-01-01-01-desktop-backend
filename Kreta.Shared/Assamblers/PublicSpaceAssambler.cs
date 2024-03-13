@@ -1,5 +1,5 @@
-﻿
-using Kreta.Shared.Dtos;
+﻿using Kreta.Shared.Dtos;
+using Kreta.Shared.Extensions;
 using Kreta.Shared.Models;
 
 namespace Kreta.Shared.Assamblers
@@ -8,12 +8,12 @@ namespace Kreta.Shared.Assamblers
     {
         public override PublicSpaceDto ToDto(PublicSpace domainEntity)
         {
-            throw new NotImplementedException();
+            return domainEntity.ToDto();
         }
 
         public override PublicSpace ToModel(PublicSpaceDto dto)
         {
-            throw new NotImplementedException();
+            return dto.ToModel();
         }
     }
 }
