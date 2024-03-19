@@ -1,4 +1,5 @@
 ﻿using Kreta.Shared.Dtos;
+using Kreta.Shared.Extensions;
 using Kreta.Shared.Models;
 
 namespace Kreta.Shared.Assamblers
@@ -7,12 +8,12 @@ namespace Kreta.Shared.Assamblers
     {
         public override TypeOfEducationDto ToDto(TypeOfEducation domainEntity)
         {
-            throw new NotImplementedException();
+            return domainEntity.ToDto();
         }
 
         public override TypeOfEducation ToModel(TypeOfEducationDto dto)
         {
-            throw new NotImplementedException();
+            return dto.ToModel();
         }
     }
 }

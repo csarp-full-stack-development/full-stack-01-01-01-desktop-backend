@@ -8,5 +8,7 @@ namespace Kreta.Shared.Dtos
 {
     public class SubjectTypeDto
     {
+        public Guid Id { get; set; }
+        public string SubjectTypeName { get; set; }
     }
 }

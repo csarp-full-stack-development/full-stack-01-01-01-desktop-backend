@@ -7,12 +7,12 @@ namespace Kreta.Shared.Assamblers
     {
         public override SubjectTypeDto ToDto(SubjectType domainEntity)
         {
-            throw new NotImplementedException();
+            return ToDto(domainEntity);
         }
 
         public override SubjectType ToModel(SubjectTypeDto dto)
         {
-            throw new NotImplementedException();
+            return ToModel(dto);
         }
     }
 }
