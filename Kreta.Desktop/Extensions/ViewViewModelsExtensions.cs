@@ -163,6 +163,13 @@ namespace KretaDesktop.Extensions
             {
                 DataContext = s.GetRequiredService<EducationLevelViewModel>()
             });
+            services.AddSingleton<TypeOfEducationViewModel>();
+            services.AddSingleton<TypeOfEducationView>(s => new TypeOfEducationView()
+            {
+                DataContext = s.GetRequiredService<TypeOfEducationViewModel>()
+            });
+
         }
+
     }
 }
