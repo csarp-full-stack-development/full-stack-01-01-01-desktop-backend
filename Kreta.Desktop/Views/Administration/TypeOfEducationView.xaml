@@ -59,22 +59,35 @@
         <TextBox Margin="2 2 2 2" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedTypeOfEducation.EducationName}"/>
         <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="2 2 2 2"
                  ItemsSource="{Binding TypeOfEducations}"
+                 SelectedItem="{Binding SelectedTypeOfEducation}"
         >
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="SelectionChanged">
+                    <behaviors:InvokeCommandAction Command="{Binding GetByTypeOfEducationIdCommand}" 
+                                                   CommandParameter="{Binding SelectedTypeOfEducation.Id}"/>
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
         </ListBox>
 
         <Label Grid.Row="2" Grid.Column="2">Szakmát tanuló osztályok</Label>
-        <ListBox Grid.Row="3" Grid.Column="2" Margin="2 2 2 2">
+        <ListBox Grid.Row="3" Grid.Column="2" Margin="2 2 2 2"
+                 ItemsSource="{Binding SchoolClasses}"
+                 SelectedItem="{Binding SelectedSchoolClass}">
         </ListBox>
-        
+
         <StackPanel Grid.Row="4" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button FontFamily="Segoe UI Symbol" MinWidth="40" Content="&#xE1FD;"
+                    Command="{Binding MoveSchoolClassToWithoutTypeOfEducationCommand}"
             />
             <Button FontFamily="Segoe UI Symbol" MinWidth="40" Content="&#xE110;"
+                    Command="{Binding MoveToWithTypeOfEducationCommand}"
             />
         </StackPanel>
 
         <Label Grid.Row="5" Grid.Column="2">Szakmát nem tanuló osztályok</Label>
         <ListBox Grid.Row="6" Grid.Column="2" Margin="2 2 2 2"
+                 ItemsSource="{Binding SchoolClassesWithoutTypeOfEducation}"
+                 SelectedItem="{Binding SelectedSchoolClassesWithoutTypeOfEducation}"
         >
         </ListBox>
     </Grid>
