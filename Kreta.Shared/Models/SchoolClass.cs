@@ -30,6 +30,7 @@ namespace Kreta.Shared.Models
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClassType { get; set; }
         public Guid? TypeOfEducationId { get; set; }
+        public virtual TypeOfEducation? TypeOfEducation { get; set; }
         public Guid? HeadTeacherId { get; set; }
         public int YearOfEnrolment {  get; set; }
         public bool IsArchived { get; set; }
@@ -43,8 +44,9 @@ namespace Kreta.Shared.Models
                 case SchoolClassType.ClassB: className = "b"; break;
                 case SchoolClassType.ClassC: className = "c"; break;
             }
+            string typeOfEducation = TypeOfEducation is not null ? TypeOfEducation.ToString() : string.Empty;
             string archived = IsArchived ? "archivált" : string.Empty;
-            return $"{SchoolYear}.{className} ({YearOfEnrolment}) {archived}";
+            return $"{SchoolYear}.{className} ({YearOfEnrolment}) {typeOfEducation} {archived}";
         }
     }
 }

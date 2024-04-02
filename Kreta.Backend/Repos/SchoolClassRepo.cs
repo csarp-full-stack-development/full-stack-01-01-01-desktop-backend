@@ -1,6 +1,4 @@
-﻿using Kreta.Backend.Context;
-using Kreta.Shared.Models;
-using Kreta.Shared.Models.SchoolCitizens;
+﻿using Kreta.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kreta.Backend.Repos
@@ -10,6 +8,23 @@ namespace Kreta.Backend.Repos
     {
         public SchoolClassRepo(IDbContextFactory<TDbContext> dbContextFactory) : base(dbContextFactory)
         {
+        }
+
+        public IQueryable<SchoolClass> SelectAllIncluded()
+        {
+            return FindAll().Include(schoolClass => schoolClass.TypeOfEducation);
+        }
+
+        public IQueryable<SchoolClass> GetSchoolClassBy(Guid typeOfEducationID)
+        {
+            return FindAll().Where(schoolClass => schoolClass.TypeOfEducationId == typeOfEducationID);
+        }
+
+        public IQueryable<SchoolClass> SelectWithoutTypeOfEducation()
+        {
+            return FindAll().Where(schoolClass =>
+              schoolClass.TypeOfEducationId == null ||
+              schoolClass.TypeOfEducationId == Guid.Empty);
         }
     }
 }

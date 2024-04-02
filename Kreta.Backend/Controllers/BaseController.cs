@@ -11,8 +11,8 @@ namespace Kreta.Backend.Controllers
         where Tmodel : class, IDbEntity<Tmodel>, new()
         where TDto : class,new()
     {
-        private readonly Assambler<Tmodel,TDto>? _assambler;
-        private readonly IRepositoryBase<Tmodel>? _repo;
+        protected readonly Assambler<Tmodel,TDto>? _assambler;
+        protected readonly IRepositoryBase<Tmodel>? _repo;
 
         public BaseController(Assambler<Tmodel, TDto>? assambler, IRepositoryBase<Tmodel>? repo)
         {
@@ -25,7 +25,7 @@ namespace Kreta.Backend.Controllers
         {
             List<Tmodel>? entities = new();
 
-            if (_repo != null)
+            if (_repo != null && _assambler is not null)
             {
                 entities = await _repo.FindAll().ToListAsync();
                 return Ok(entities.Select(entity =>  _assambler.ToDto(entity)));
@@ -37,7 +37,7 @@ namespace Kreta.Backend.Controllers
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
             Tmodel? entity = new();
-            if (_repo is not null)
+            if (_repo is not null && _assambler is not null)
             {
                 entity = await _repo.FindByCondition(entity => entity.Id == id).FirstOrDefaultAsync();
                 if (entity != null)
@@ -52,7 +52,7 @@ namespace Kreta.Backend.Controllers
         public async Task<ActionResult> UpdateAsync(TDto entity)
         {
             ControllerResponse response = new();
-            if (_repo is not null)
+            if (_repo is not null && _assambler is not null)
             {
                 response = await _repo.UpdateAsync(_assambler.ToModel(entity));
                 if (response.HasError)
@@ -96,7 +96,7 @@ namespace Kreta.Backend.Controllers
         public async Task<IActionResult> InsertAsync(TDto entity)
         {
             ControllerResponse response = new();
-            if (_repo is not null)
+            if (_repo is not null && _assambler is not null)
             {
                 response = await _repo.CreateAsync(_assambler.ToModel(entity));
                 if (response.HasError)

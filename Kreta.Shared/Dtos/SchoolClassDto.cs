@@ -9,6 +9,7 @@ namespace Kreta.Shared.Dtos
         public int SchoolYear { get; set; }
         public SchoolClassType SchoolClassType { get; set; }
         public Guid? TypeOfEducationId { get; set; }
+        public virtual TypeOfEducation? TypeOfEducation { get; set; }
         public Guid? HeadTeacherId { get; set; }
         public int YearOfEnrolment { get; set; }
         public bool IsArchived { get; set; }

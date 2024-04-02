@@ -17,6 +17,7 @@ namespace Kreta.Shared.Extensions
             {
                 Id = typeOfEducation.Id,
                 EducationName = typeOfEducation.EducationName,
+                SchoolClasses = typeOfEducation.SchoolClasses,
             };
         }
 
@@ -26,6 +27,7 @@ namespace Kreta.Shared.Extensions
             {
                 Id = typeOfEducationDto.Id,
                 EducationName = typeOfEducationDto.EducationName,
+                SchoolClasses = typeOfEducationDto.SchoolClasses,
             };
         }
     }

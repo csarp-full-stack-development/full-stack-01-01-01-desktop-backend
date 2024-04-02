@@ -16,6 +16,7 @@ namespace Kreta.Shared.Extensions
                 IsArchived = dto.IsArchived,
                 HeadTeacherId = dto.HeadTeacherId,
                 TypeOfEducationId = dto.TypeOfEducationId,
+                TypeOfEducation = dto.TypeOfEducation,
             };
         }
 
@@ -30,7 +31,7 @@ namespace Kreta.Shared.Extensions
                 IsArchived = model.IsArchived,
                 HeadTeacherId=model.HeadTeacherId,
                 TypeOfEducationId = model.TypeOfEducationId,
-
+                TypeOfEducation= model.TypeOfEducation,
             };
         }
     }
