@@ -8,77 +8,64 @@ using Kreta.Shared.Responses;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kreta.Desktop.ViewModels.Administration
 {
     public partial class EducationLevelViewModel : BaseViewModel
     {
-        private readonly IEducationLavelService? _educationLevelService;
+        private readonly IEducationLevelService? _educationLevelService;
         private readonly IStudentService? _studentService;
-        
+
         [ObservableProperty]
         private ObservableCollection<EducationLevel> _educationLevels = new();
 
         [ObservableProperty]
-        private EducationLevel _selectedEducationLevel;
+        private EducationLevel _selectedEducationLevel = new();
 
         [ObservableProperty]
-        private ObservableCollection<Student> _studentWithEducationLevel = new();
+        private ObservableCollection<Student> _studentsWithEducationLevel = new();
 
         [ObservableProperty]
-        private Student _selectedStudentWithEducationLevel=new();
-        
-        [ObservableProperty]
-        private ObservableCollection<Student> _studentNoEducationLevel = new();
+        private Student _selectedStudentWithEducationLevel = new();
 
         [ObservableProperty]
-        private Student _selectedStudentWithNoEducationLevel=new();
+        private ObservableCollection<Student> _studentsWithoutEducationLevel = new();
 
-        public string Title { get; set; } = "Tanulmányi szint kezelése";
+        [ObservableProperty]
+        private Student _selectedStudentWithoutEducationLevel = new();
 
         public EducationLevelViewModel()
         {
-            _selectedEducationLevel = new EducationLevel();
         }
-
-        public EducationLevelViewModel(IEducationLavelService? educationLevelService, IStudentService? studentService)
+        public EducationLevelViewModel(
+            IEducationLevelService? educationLevelService,
+            IStudentService? studentService)
         {
             _educationLevelService = educationLevelService;
             _studentService = studentService;
-            SelectedEducationLevel = new EducationLevel();
         }
 
-        public async override Task InitializeAsync()
+        public string Title { get; set; } = "Tanulmányi szint kezelése";
+
+        public override async Task InitializeAsync()
         {
             await UpdateView();
+            await base.InitializeAsync();
         }
 
         [RelayCommand]
-        private async Task DoSave(EducationLevel educationLevels)
+        private void DoNew()
         {
-            if (_educationLevelService is not null)
-            {
-                ControllerResponse result;
-                if (educationLevels.HasId)
-                    result = await _educationLevelService.UpdateAsync(educationLevels);
-                else
-                    result = await _educationLevelService.InsertAsync(educationLevels);
-
-                if (!result.HasError)
-                {
-                    await UpdateView();
-                }
-            }
+            SelectedEducationLevel = new();
         }
 
         [RelayCommand]
-        private async Task DoRemove(EducationLevel educationLevel)
+        private async Task DoRemove(EducationLevel educationLevelToDelete)
         {
             if (_educationLevelService is not null)
             {
-                ControllerResponse result = await _educationLevelService.DeleteAsync(educationLevel.Id);
+                ControllerResponse result = await _educationLevelService.DeleteAsync(educationLevelToDelete.Id);
                 if (result.IsSuccess)
                 {
                     await UpdateView();
@@ -87,17 +74,69 @@ namespace Kreta.Desktop.ViewModels.Administration
         }
 
         [RelayCommand]
-        private void DoNew()
-        {
-            SelectedEducationLevel = new EducationLevel();
-        }
-        
-        private async Task UpdateView()
+        private async Task DoSave(EducationLevel educationLevelToSave)
         {
             if (_educationLevelService is not null)
             {
-                List<EducationLevel> educationLevels = await _educationLevelService.SelectAllAsync();
-                EducationLevels = new ObservableCollection<EducationLevel>(educationLevels);
+                ControllerResponse result = new();
+                if (educationLevelToSave.HasId)
+                    result = await _educationLevelService.UpdateAsync(educationLevelToSave);
+                else
+                    result = await _educationLevelService.InsertAsync(educationLevelToSave);
+                if (result.IsSuccess)
+                    await UpdateView();
+            }
+        }
+
+        [RelayCommand]
+        private async Task GetStudentsByEducationLevelId()
+        {
+            if (_studentService is not null &&
+                SelectedEducationLevel is not null &&
+                SelectedEducationLevel.HasId)
+            {
+                List<Student> studentsWithEducationLevelId = await _studentService.GetStudentsByEducationId(SelectedEducationLevel.Id);
+                StudentsWithEducationLevel = new ObservableCollection<Student>(studentsWithEducationLevelId);
+            }
+        }
+
+        [RelayCommand]
+        private async Task MoveStudentToWithoutEducationLevel()
+        {
+            if (_studentService is not null && SelectedStudentWithEducationLevel is not null)
+            {
+                SelectedStudentWithEducationLevel.EducationLevelId = null;
+                ControllerResponse result = await _studentService.UpdateAsync(SelectedStudentWithEducationLevel);
+                if (result.IsSuccess)
+                    await UpdateView();
+            }
+        }
+
+        [RelayCommand]
+        private async Task MoveStudentToWithEducationLevel()
+        {
+            if (_studentService is not null &&
+                SelectedStudentWithoutEducationLevel is not null
+                && SelectedEducationLevel is not null)
+            {
+                SelectedStudentWithoutEducationLevel.EducationLevelId =
+                    SelectedEducationLevel.Id;
+                ControllerResponse response = await _studentService.UpdateAsync(SelectedStudentWithoutEducationLevel);
+                if (response.IsSuccess)
+                    await UpdateView();
+            }
+        }
+
+        private async Task UpdateView()
+        {
+            if (_educationLevelService is not null && _studentService is not null)
+            {
+                List<EducationLevel> result = await _educationLevelService.SelectAllAsync();
+                EducationLevels = new ObservableCollection<EducationLevel>(result);
+
+                List<Student> withoutEducationLevelResult =
+                    await _studentService.GetStudentsWithoutEducationLevel();
+                StudentsWithoutEducationLevel = new ObservableCollection<Student>(withoutEducationLevelResult);
             }
         }
     }

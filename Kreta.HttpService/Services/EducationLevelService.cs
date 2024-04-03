@@ -9,5 +9,7 @@ namespace Kreta.HttpService.Services
         public EducationLevelService(IHttpClientFactory? httpClientFactory, EducationLevelAssambler assambler, StudentAssambler studentAssambler) : base(httpClientFactory, assambler)
         {
         }
+
+
     }
 }
