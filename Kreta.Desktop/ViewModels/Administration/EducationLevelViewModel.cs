@@ -8,38 +8,39 @@ using Kreta.Shared.Responses;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kreta.Desktop.ViewModels.Administration
 {
     public partial class EducationLevelViewModel : BaseViewModel
     {
-        private readonly IEducationLevelService? _educationLevelService;
+        private readonly IEducationLavelService? _educationLevelService;
         private readonly IStudentService? _studentService;
 
         [ObservableProperty]
         private ObservableCollection<EducationLevel> _educationLevels = new();
 
         [ObservableProperty]
-        private EducationLevel _selectedEducationLevel = new();
+        private EducationLevel? _selectedEducationLevel = new();
 
         [ObservableProperty]
         private ObservableCollection<Student> _studentsWithEducationLevel = new();
 
         [ObservableProperty]
-        private Student _selectedStudentWithEducationLevel = new();
+        private Student? _selectedStudentWithEducationLevel = new();
 
         [ObservableProperty]
         private ObservableCollection<Student> _studentsWithoutEducationLevel = new();
 
         [ObservableProperty]
-        private Student _selectedStudentWithoutEducationLevel = new();
+        private Student? _selectedStudentWithoutEducationLevel = new();
 
         public EducationLevelViewModel()
         {
         }
         public EducationLevelViewModel(
-            IEducationLevelService? educationLevelService,
+            IEducationLavelService? educationLevelService,
             IStudentService? studentService)
         {
             _educationLevelService = educationLevelService;
@@ -105,10 +106,14 @@ namespace Kreta.Desktop.ViewModels.Administration
         {
             if (_studentService is not null && SelectedStudentWithEducationLevel is not null)
             {
-                SelectedStudentWithEducationLevel.EducationLevelId = null;
+                EducationLevel? storedSelectedEducationLevel = SelectedEducationLevel;
+                SelectedStudentWithEducationLevel.EducationLevelId = Guid.Empty;
                 ControllerResponse result = await _studentService.UpdateAsync(SelectedStudentWithEducationLevel);
                 if (result.IsSuccess)
                     await UpdateView();
+                if (storedSelectedEducationLevel is not null)
+                    SelectedEducationLevel = EducationLevels.FirstOrDefault(educationLevel => educationLevel.Id == storedSelectedEducationLevel.Id);
+                SelectedStudentWithEducationLevel = SelectedStudentWithEducationLevel ?? new();
             }
         }
 
@@ -119,11 +124,14 @@ namespace Kreta.Desktop.ViewModels.Administration
                 SelectedStudentWithoutEducationLevel is not null
                 && SelectedEducationLevel is not null)
             {
-                SelectedStudentWithoutEducationLevel.EducationLevelId =
-                    SelectedEducationLevel.Id;
+                EducationLevel? storedSelectedEducationLevel = SelectedEducationLevel;
+                SelectedStudentWithoutEducationLevel.EducationLevelId = SelectedEducationLevel.Id;
                 ControllerResponse response = await _studentService.UpdateAsync(SelectedStudentWithoutEducationLevel);
                 if (response.IsSuccess)
                     await UpdateView();
+                if (storedSelectedEducationLevel is not null)
+                    SelectedEducationLevel = EducationLevels.FirstOrDefault(educationLevel => educationLevel.Id == storedSelectedEducationLevel.Id);
+                SelectedStudentWithEducationLevel = SelectedStudentWithEducationLevel ?? new();
             }
         }
 
@@ -137,6 +145,10 @@ namespace Kreta.Desktop.ViewModels.Administration
                 List<Student> withoutEducationLevelResult =
                     await _studentService.GetStudentsWithoutEducationLevel();
                 StudentsWithoutEducationLevel = new ObservableCollection<Student>(withoutEducationLevelResult);
+                if (EducationLevels.Any())
+                    SelectedEducationLevel = EducationLevels.FirstOrDefault();
+                SelectedEducationLevel = SelectedEducationLevel ?? new();
+
             }
         }
     }
