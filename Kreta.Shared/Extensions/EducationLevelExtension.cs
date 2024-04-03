@@ -12,6 +12,7 @@ namespace Kreta.Shared.Extensions
                 Id = educationLevel.Id,
                 StudentEducationLevel = educationLevel.StudentEducationLevel,
                 DurationOfEducation=educationLevel.DurationOfEducation,
+                Students = educationLevel.Students,
             };
         }
 
@@ -22,6 +23,7 @@ namespace Kreta.Shared.Extensions
                 Id = model.Id,
                 StudentEducationLevel = model.StudentEducationLevel,
                 DurationOfEducation=model.DurationOfEducation,
+                Students = model.Students,
             };
         }            
     }

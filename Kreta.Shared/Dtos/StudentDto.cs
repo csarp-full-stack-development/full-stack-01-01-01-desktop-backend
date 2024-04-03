@@ -1,9 +1,12 @@
-﻿namespace Kreta.Shared.Dtos
+﻿using Kreta.Shared.Models;
+
+namespace Kreta.Shared.Dtos
 {
     public class StudentDto
     {
         public Guid Id { get; set; }
         public Guid? EducationLevelId { get; set; }
+        public virtual EducationLevel? EducationLevel { get; set; }
         public Guid? SchoolClassID { get; set; }
         public Guid? MotherId { get; set; }
         public Guid? FatherId { get; set; }
