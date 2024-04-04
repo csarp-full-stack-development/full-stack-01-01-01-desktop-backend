@@ -34,6 +34,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">Diák adatok</Label>
@@ -42,9 +44,11 @@
         <Label Grid.Row="5" Grid.Column="0">Nem:</Label>
         <Label Grid.Row="6" Grid.Column="0">Születési év:</Label>
         <Label Grid.Row="7" Grid.Column="0">Születési helye:</Label>
-        <Label Grid.Row="8" Grid.Column="0">Osztály:</Label>
-        <Label Grid.Row="9" Grid.Column="0">Tanulmányi szint:</Label>
-        <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.ColumnSpan="2" Margin="10 2 2 2">
+        <Label Grid.Row="8" Grid.Column="0">Diák anyja:</Label>
+        <Label Grid.Row="9" Grid.Column="0">Diák apja:</Label>
+        <Label Grid.Row="10" Grid.Column="0">Osztály:</Label>
+        <Label Grid.Row="11" Grid.Column="0">Tanulmányi szint:</Label>
+        <StackPanel Orientation="Horizontal" Grid.Row="12" Grid.ColumnSpan="2" Margin="10 2 2 2">
             <!-- Gombok helye -->
             <Button  Margin="0 10 2 2" 
                      HorizontalAlignment="Right" 
@@ -86,14 +90,16 @@
         <DatePicker Grid.Row="6" Grid.Column="1" Margin="2 2 2 2" SelectedDate="{Binding SelectedStudent.BirthDay}"></DatePicker>
         <TextBox Grid.Row="7" Grid.Column="1" Margin="2 2 2 2" Padding="0 2" Text="{Binding SelectedStudent.PlaceOfBirth}"></TextBox>
         <ComboBox Grid.Row="8" Grid.Column="1" Margin="2 4 2 4"></ComboBox>
-        <ComboBox Grid.Row="9" Grid.Column="1" Margin="2 4 2 4"
+        <ComboBox Grid.Row="9" Grid.Column="1" Margin="2 4 2 4"></ComboBox>
+        <ComboBox Grid.Row="10" Grid.Column="1" Margin="2 4 2 4"></ComboBox>
+        <ComboBox Grid.Row="11" Grid.Column="1" Margin="2 4 2 4"
                   ItemsSource="{Binding EducationLevels}"
                   SelectedValue="{Binding SelectedStudent.EducationLevelId}"
                   SelectedValuePath="Id"
                   DisplayMemberPath="StudentEducationLevel"   
          >
         </ComboBox>
-        <ListBox Grid.Row="12"
+        <ListBox Grid.Row="14"
               Grid.ColumnSpan="2" 
               Margin="10 2 10 10"
               ItemsSource="{Binding Students}"
@@ -101,4 +107,3 @@
         />
     </Grid>
 </UserControl>
-
