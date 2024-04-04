@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Styles/ControlBarButton.xaml" />
                 <ResourceDictionary Source="/Styles/IconButton.xaml"/>
                 <ResourceDictionary Source="/Styles/SubMenuButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/ValidationStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

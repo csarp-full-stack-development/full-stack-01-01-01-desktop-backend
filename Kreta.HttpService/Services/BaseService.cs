@@ -70,7 +70,13 @@ namespace Kreta.HttpService.Services
                     }
                     else
                     {
-                        return defaultResponse;
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        if (response is null)
+                        {
+                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
+                        }
+                        else return response;
                     }
                 }
 
@@ -108,7 +114,13 @@ namespace Kreta.HttpService.Services
                     }
                     else
                     {
-                        return defaultResponse;
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        if (response is null)
+                        {
+                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
+                        }
+                        else return response;
                     }
                 }
                 catch (Exception ex)
@@ -144,7 +156,13 @@ namespace Kreta.HttpService.Services
                     }
                     else
                     {
-                        return defaultResponse;
+                        string content = await httpResponse.Content.ReadAsStringAsync();
+                        ControllerResponse? response = JsonConvert.DeserializeObject<ControllerResponse>(content);
+                        if (response is null)
+                        {
+                            defaultResponse.ClearAndAddError("A módosítás http kérés hibát okozott!");
+                        }
+                        else return response;
                     }
                 }
                 catch (Exception ex)

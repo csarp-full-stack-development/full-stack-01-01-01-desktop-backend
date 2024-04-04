@@ -45,6 +45,7 @@ namespace Kreta.Backend.Repos
                 _dbContext.ChangeTracker.Clear();
                 _dbContext.Entry(entity).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
+                response.Id = entity.Id;
             }
             catch (Exception e)
             {
@@ -76,6 +77,7 @@ namespace Kreta.Backend.Repos
                         _dbContext.ChangeTracker.Clear();
                         _dbContext.Entry(entityToDelete).State = EntityState.Deleted;
                         await _dbContext.SaveChangesAsync();
+                        response.Id = entityToDelete.Id;
                     }
                 }
                 catch (Exception e)
@@ -102,6 +104,7 @@ namespace Kreta.Backend.Repos
                 {
                     _dbSet.Add(entity);
                     await _dbContext.SaveChangesAsync();
+                    response.Id= entity.Id;
                 }
                 catch (Exception e)
                 {
