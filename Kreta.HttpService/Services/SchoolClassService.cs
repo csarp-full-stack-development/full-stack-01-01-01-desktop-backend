@@ -33,7 +33,7 @@ namespace Kreta.HttpService.Services
             return new List<SchoolClass>();
         }
 
-        public async Task<List<SchoolClass>> GetByTypeofEducationIdAsync(Guid typeOfEducationID)
+        public async Task<List<SchoolClass>> GetByTypeOfEducationIdAsync(Guid typeOfEducationID)
         {
             if (_httpClient is not null)
             {

@@ -91,7 +91,7 @@ namespace Kreta.Desktop.ViewModels.Administration
         {
             if (_schoolClassService is not null)
             {
-                List<SchoolClass> schoolClasses = await _schoolClassService.GetByTypeofEducationIdAsync(typeOfEducationId);
+                List<SchoolClass> schoolClasses = await _schoolClassService.GetByTypeOfEducationIdAsync(typeOfEducationId);
                 SchoolClasses = new ObservableCollection<SchoolClass>(schoolClasses);
                 await UpdateView();
             }
